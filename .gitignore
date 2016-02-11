@@ -1,0 +1,6 @@
+*
+|.gitignore
+|.vimrc
+|.rubocop.yml 
+|.rubocop_rails.yml
+|.bashrc
