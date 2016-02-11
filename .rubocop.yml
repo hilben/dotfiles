@@ -1,0 +1,27 @@
+inherit_from: .rubocop_rails.yml
+
+AllCops:
+  TargetRubyVersion: 2.2
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'spec/fixtures/**/*'
+    - '**/.**'
+
+Documentation:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 100
+
+Style/SignalException:
+  Enabled: false
+
+Style/AndOr:
+  # Whether `and` and `or` are banned only in conditionals (conditionals)
+  # or completely (always).
+  EnforcedStyle: conditionals
