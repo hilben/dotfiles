@@ -8,7 +8,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'gmarik/vundle'
 
- Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-sensible'
 
 " Some default settings
 Plugin 'tpope/vim-rvm'
@@ -54,27 +54,47 @@ filetype plugin indent on
 
 let mapleader=","
 
-set nocursorline
-set modelines=0
-set lazyredraw
-set clipboard=unnamed
-set synmaxcol=400
-set ttyscroll=100
-set encoding=utf-8
-set nowrap
-set number
-set nowritebackup
-set noswapfile
+
+set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
-set hlsearch
-set ignorecase
-set smartcase
-set list listchars=tab:»·,trail:· " highlight spaces
-set scrolloff=2                   " minimum lines above/below cursor
-set softtabstop=2 " 1 Tab = 2 Spaces
-set shiftwidth=2
+set nowritebackup
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set history=50
+set ruler         " show the cursor position all the time
+set showcmd       " display incomplete commands
+set incsearch     " do incremental searching
+set laststatus=2  " Always display the status line
+set autowrite     " Automatically :write before running commands
+set lazyredraw
+set number
+" Softtabs, 2 spaces
 set tabstop=2
+set shiftwidth=2
+set shiftround
 set expandtab
+" Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:·
+" Use one space, not two, after punctuation.
+set nojoinspaces
+set ignorecase
+
+" Make it obvious where 80 characters is
+set textwidth=80
+set colorcolumn=+1
+" Numbers
+set number
+set numberwidth=1
+
+"set nocursorline
+"set nowrap
+"set nowritebackup
+"set noswapfile
+"set nobackup
+"set hlsearch
+"set smartcase
+"set scrolloff=2                   " minimum lines above/below cursor
+"set softtabstop=2 " 1 Tab = 2 Spaces
+"set shiftwidth=2
 
 " Automatic formatting
 autocmd BufWritePre *.rb :%s/\s\+$//e
@@ -102,6 +122,17 @@ nmap <leader>s<right>  :rightbelow vnew<cr>
 nmap <leader>s<up>     :leftabove  new<cr>
 nmap <leader>s<down>   :rightbelow new<cr>
 
+
+" Disable cursors
+noremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+
 " Gif config
 nmap s <Plug>(easymotion-s2)
 
@@ -128,23 +159,18 @@ let g:vimrubocop_config = '~/.rubocop.yml'
 nmap <Leader>r :RuboCop<CR>
 
 "tabs
- nmap <C-f>   <Esc>:tabnext<CR>
- noremap <C-t>     <Esc>:tabnew<CR>
- nnoremap <C-x> :tabclose<CR>
+nmap <C-f>   <Esc>:tabnext<CR>
+noremap <C-t>     <Esc>:tabnew<CR>
+nnoremap <C-x> :tabclose<CR>
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 40
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 " set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 let g:ctrlp_custom_ignore = { 'dir':  '\v[\/]\.(git|hg|svn)$', 'file': '\v\.(exe|so|dll)$', 'link': 'some_bad_symbolic_links'}
-
-" Omnicfunc
-" Omnicfunc: Use ruby completion within slim files:
-" autocmd FileType slim setl omnifunc=rubycomplete#Complete "remove ?
 
 " Quit with :Q
 command -nargs=0 Quit :qa!
