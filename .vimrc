@@ -77,24 +77,15 @@ set list listchars=tab:»·,trail:·,nbsp:·
 " Use one space, not two, after punctuation.
 set nojoinspaces
 set ignorecase
-
+set cursorline
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+1
 " Numbers
 set number
 set numberwidth=1
-
-"set nocursorline
-"set nowrap
-"set nowritebackup
-"set noswapfile
-"set nobackup
-"set hlsearch
-"set smartcase
-"set scrolloff=2                   " minimum lines above/below cursor
-"set softtabstop=2 " 1 Tab = 2 Spaces
-"set shiftwidth=2
+" highlight search
+set hlsearch
 
 " Automatic formatting
 autocmd BufWritePre *.rb :%s/\s\+$//e
@@ -112,6 +103,7 @@ autocmd VimEnter * set nosc
 
 " Quick ESC
 imap jj <ESC>
+imap hh <ESC>
 
 " format the entire file
 nmap <leader>fef ggVG=
@@ -124,7 +116,7 @@ nmap <leader>s<down>   :rightbelow new<cr>
 
 
 " Disable cursors
-noremap  <Up>     <NOP>
+inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
 inoremap  <Left>   <NOP>
 inoremap  <Right>  <NOP>
