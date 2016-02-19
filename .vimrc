@@ -149,6 +149,7 @@ nnoremap <Leader>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 " rubo cop
 let g:vimrubocop_config = '~/.rubocop.yml'
 nmap <Leader>r :RuboCop<CR>
+nmap <Leader>ra :RuboCop -a<CR>
 
 "tabs
 nmap <C-f>   <Esc>:tabnext<CR>
