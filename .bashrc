@@ -32,7 +32,7 @@ alias bes='bundle exec rspec'
 
 alias rs='ruby -e "while 1
 begin
-system %q{rspec}
+system %q{bundle exec rspec}
 sleep 3
 rescue
 end
