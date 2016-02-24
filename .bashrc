@@ -24,11 +24,14 @@ alias g='git'
 alias gs='git status'
 alias gc='git commit'
 alias ga='git add' 
-alias gp='git push' 
+alias gp='git pull' 
 
 alias be='bundle exec'
 alias b='bundle'
 alias bes='bundle exec rspec'
+
+alias bem='be rake db:migrate'
+alias ber='be rake db:reset'
 
 alias rs='ruby -e "while 1
 begin
