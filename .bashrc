@@ -30,6 +30,14 @@ alias be='bundle exec'
 alias b='bundle'
 alias bes='bundle exec rspec'
 
+alias rs='ruby -e "while 1
+begin
+system %q{rspec}
+sleep 3
+rescue
+end
+end"'
+
 alias reload_bash="source ~/.bashrc"
 
 PATH=$PATH:~/
