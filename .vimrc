@@ -54,7 +54,6 @@ filetype plugin indent on
 
 let mapleader=","
 
-
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
@@ -108,6 +107,9 @@ imap hh <ESC>
 " format the entire file
 nmap <leader>fef ggVG=
 
+" remove unneeded whitespaces
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
 " Open new buffers
 nmap <leader>s<left>   :leftabove  vnew<cr>
 nmap <leader>s<right>  :rightbelow vnew<cr>
@@ -142,7 +144,7 @@ let NERDTreeHighlightCursorline=1
 
 " Syntastic
 let g:syntastic_mode_map = { 'mode': 'passive' }
-let g:syntastic_ruby_exec = '~/.rvm/rubies/ruby-2.2.2/bin/ruby'
+let g:syntastic_ruby_exec = '~/.rvm/rubies/ruby-2.3.0/bin/ruby'
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 nnoremap <Leader>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
@@ -155,6 +157,7 @@ nmap <Leader>ra :RuboCop -a<CR>
 nmap <C-f>   <Esc>:tabnext<CR>
 noremap <C-t>     <Esc>:tabnew<CR>
 nnoremap <C-x> :tabclose<CR>
+nnoremap <Leader>q> :tabclose<CR>
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'r'

@@ -4,6 +4,7 @@ alias r="source ~/.bashrc"
 alias t="cd ~/tellit/tell_it/"
 alias s="cd ~/tellit/statistics/"
 alias a="cd ~/tellit/adapter/"
+
 alias ss="rails s -p 3001"
 alias mahout="~/mahout-distribution-0.9/bin/mahout"
 #alias fitman="ssh benhil@192.168.65.156"
@@ -24,6 +25,9 @@ alias gs='git status'
 alias gc='git commit'
 alias ga='git add' 
 alias gp='git push' 
+
+alias be='bundle exec'
+alias b='bundle'
 
 alias reload_bash="source ~/.bashrc"
 
