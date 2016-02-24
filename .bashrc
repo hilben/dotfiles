@@ -28,6 +28,7 @@ alias gp='git push'
 
 alias be='bundle exec'
 alias b='bundle'
+alias bes='bundle exec rspec'
 
 alias reload_bash="source ~/.bashrc"
 
