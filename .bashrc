@@ -21,6 +21,7 @@ alias fixpry='stty echo'
 alias installpg_gem="gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/9.3/bin/pg_config"
 
 alias g='git'
+alias gl='git log'
 alias gs='git status'
 alias gc='git commit'
 alias ga='git add' 
