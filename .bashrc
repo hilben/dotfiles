@@ -26,6 +26,7 @@ alias gs='git status'
 alias gc='git commit'
 alias ga='git add' 
 alias gp='git pull' 
+alias gd='git diff HEAD@{1}'
 
 alias be='bundle exec'
 alias b='bundle'
