@@ -1,4 +1,4 @@
-echo 'loading Bennis bashrc v1.07'
+echo 'loading Bennis bashrc v1.08'
 
 alias r="source ~/.bashrc"
 alias x="cd ~/xing/"
@@ -7,8 +7,6 @@ alias y="cd ~/xing/yoda"
 
 # Foreman 
 alias bef='bundle exec foreman start'
-
-alias ss="rails s -p 3001"
 alias mahout="~/mahout-distribution-0.9/bin/mahout"
 #alias fitman="ssh benhil@192.168.65.156"
 alias fitman="ssh benhil@138.232.65.156"
