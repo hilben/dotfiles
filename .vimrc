@@ -39,6 +39,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'slim-template/vim-slim'
+Plugin 'kshenoy/vim-signature'
 
 " Color Schemes
 Plugin 'nanotech/jellybeans.vim'
