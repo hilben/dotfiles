@@ -27,6 +27,7 @@ Plugin 'Lokaltog/vim-powerline'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'lokaltog/vim-easymotion'
+Plugin 'Shougo/unite.vim'
 
 " Code analysis
 Plugin 'ngmy/vim-rubocop'
@@ -84,8 +85,8 @@ set colorcolumn=+1
 " Numbers
 set number
 set numberwidth=1
-" highlight search
-set hlsearch
+set hlsearch " highlight search
+set mouse=a " Add mouse support
 
 " Automatic formatting
 autocmd BufWritePre *.rb :%s/\s\+$//e
@@ -138,6 +139,8 @@ if bufwinnr(1)
   nmap ö <C-W>-<C-W>-
   nmap ä <C-W>+<C-W>+
 endif
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
@@ -150,7 +153,7 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_
 nnoremap <Leader>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
 " rubo cop
-let g:vimrubocop_config = '~/.rubocop.yml'
+let g:vimrubocop_config = '.rubocop.yml'
 nmap <Leader>r :RuboCop<CR>
 nmap <Leader>ra :RuboCop -a<CR>
 
@@ -172,6 +175,11 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+
+
+" Save and load session
+map <C-k> :mksession! ~/vim_session <cr> 
+map <C-l> :source ~/vim_session <cr>    
 
 " Quit with :Q
 command -nargs=0 Quit :qa!
