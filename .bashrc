@@ -4,14 +4,11 @@ alias r="source ~/.bashrc"
 alias x="cd ~/xing/"
 alias y="cd ~/xing/yoda"
 
-
-
 alias sandbox_reset="xing e r dev-benjamin-hiltpolt && xing e r
 test-benjamin-hiltpolt && xing e r edge-benjamin-hiltpolt"
 alias sandbox_services="xing s r -s ds_autocompletion yoda ds_entity-matching &&
   xing s r -s ds_autocompletion yoda ds_entity-matching --host test && xing s r
 -s ds_autocompletion yoda ds_entity-matching --host edge"
-
 
 # Foreman 
 alias bef='bundle exec foreman start'
@@ -64,13 +61,11 @@ end" > run.rb'
 
 alias reload_bash="source ~/.bashrc"
 
-
 PATH=$PATH:~/
 
 export DOCKER_HOST=tcp://192.168.59.103:2376
 export DOCKER_CERT_PATH=/Users/benjaminhiltpolt/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
-
 
 ### Prepare release changelog
 function prepare_cl() {
@@ -87,5 +82,4 @@ function prepare_cl() {
 #export INFLUXDB_HOST="192.168.59.103"
 #export STATISTICS_DB_HOST="192.168.59.103"
 #export STATISTICS_HTTP_HOST="localhost:3001"
-
 #ruby ~/github/cats/print_texts.rb
