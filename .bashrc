@@ -1,8 +1,16 @@
-echo 'loading Bennis bashrc v1.08'
+echo 'loading Bennis bashrc v1.09'
 
 alias r="source ~/.bashrc"
 alias x="cd ~/xing/"
 alias y="cd ~/xing/yoda"
+
+
+
+alias sandbox_reset="xing e r dev-benjamin-hiltpolt && xing e r
+test-benjamin-hiltpolt && xing e r edge-benjamin-hiltpolt"
+alias sandbox_services="xing s r -s ds_autocompletion yoda ds_entity-matching &&
+  xing s r -s ds_autocompletion yoda ds_entity-matching --host test && xing s r
+-s ds_autocompletion yoda ds_entity-matching --host edge"
 
 
 # Foreman 
@@ -29,6 +37,7 @@ alias gc='git commit'
 alias ga='git add' 
 alias gp='git pull' 
 alias gd='git diff HEAD@{1}'
+alias gitconfig='cat ~/.gitconfig'
 
 alias be='bundle exec'
 alias b='bundle'

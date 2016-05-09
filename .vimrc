@@ -36,7 +36,7 @@ Plugin 'scrooloose/syntastic'
 " highlighting
 Plugin 'omer/vim-sparql'
 Plugin 'othree/html5.vim'
-Plugin 'pangloss/vim-javascript'
+" Plugin 'pangloss/vim-javascript'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'slim-template/vim-slim'
@@ -87,6 +87,9 @@ set number
 set numberwidth=1
 set hlsearch " highlight search
 set mouse=a " Add mouse support
+set cursorcolumn " show colum cursor
+
+set clipboard=unnamed " advanced clipboard"
 
 " Automatic formatting
 autocmd BufWritePre *.rb :%s/\s\+$//e
@@ -98,6 +101,7 @@ autocmd BufWritePre *.slim :%s/\s\+$//e
 
 au BufNewFile * set noeol
 au BufRead,BufNewFile *.go set filetype=go
+au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 
 " No show command
 autocmd VimEnter * set nosc
@@ -117,7 +121,6 @@ nmap <leader>s<left>   :leftabove  vnew<cr>
 nmap <leader>s<right>  :rightbelow vnew<cr>
 nmap <leader>s<up>     :leftabove  new<cr>
 nmap <leader>s<down>   :rightbelow new<cr>
-
 
 " Disable cursors
 inoremap  <Up>     <NOP>
@@ -146,16 +149,24 @@ nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 
-" Syntastic
-let g:syntastic_mode_map = { 'mode': 'passive' }
-let g:syntastic_ruby_exec = '~/.rvm/rubies/ruby-2.3.0/bin/ruby'
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-nnoremap <Leader>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
-
 " rubo cop
 let g:vimrubocop_config = '.rubocop.yml'
-nmap <Leader>r :RuboCop<CR>
+nmap <Leader>r :RuboCop<CR
 nmap <Leader>ra :RuboCop -a<CR>
+
+" Syntastic
+"let g:syntastic_mode_map = { 'mode': 'passive' }
+"let g:syntastic_ruby_exec = '~/.rbenv/versions/bin/ruby'
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+"nnoremap <Leader>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+let g:syntastic_auto_jump = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_filetype_map = { 'javascript.doxygen': 'javascript' }
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_always_populate_loc_list = 1
+
 
 "tabs
 nmap <C-f>   <Esc>:tabnext<CR>
