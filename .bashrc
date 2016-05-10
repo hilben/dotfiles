@@ -3,6 +3,7 @@ echo 'loading Bennis bashrc v1.09'
 alias r="source ~/.bashrc"
 alias x="cd ~/xing/"
 alias y="cd ~/xing/yoda"
+alias gh="cd ~/github"
 
 alias sandbox_reset="xing e r dev-benjamin-hiltpolt && xing e r
 test-benjamin-hiltpolt && xing e r edge-benjamin-hiltpolt"

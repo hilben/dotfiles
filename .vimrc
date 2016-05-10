@@ -56,40 +56,58 @@ filetype plugin indent on
 
 let mapleader=","
 
-set backspace=2   " Backspace deletes like most programs in insert mode
-set nobackup
-set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=50
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
-set laststatus=2  " Always display the status line
-set autowrite     " Automatically :write before running commands
-set lazyredraw
-set number
-" Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
-set shiftround
-set expandtab
-" Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
-" Use one space, not two, after punctuation.
-set nojoinspaces
-set ignorecase
-set cursorline
-" Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=+1
-" Numbers
-set number
-set numberwidth=1
-set hlsearch " highlight search
-set mouse=a " Add mouse support
-set cursorcolumn " show colum cursor
 
+filetype plugin indent on
+filetype plugin on " enable plugins
+hi CursorColumn ctermbg=4
+set autoindent " code autoindent
+set autowrite     " Automatically :write before running commands
+set backspace=indent,eol,start
+set backup " backup files
+set backupdir=/tmp,. " backup files
 set clipboard=unnamed " advanced clipboard"
+set colorcolumn=+1
+set completeopt=menu,preview " autocomplete function
+set cursorcolumn " show colum cursor
+set cursorline " highlight current line
+set directory=/tmp,. " swap files
+set expandtab " don't use real tabs
+set foldenable " enable folding
+set history=2000 " history length
+set hlsearch " highlight search
+set ignorecase " case unsensitive search
+set incsearch " show search matches while typing
+set laststatus=2 " always show status line
+set lazyredraw
+set list " show hidden chars
+set mouse=a " Add mouse support
+set nocompatible " remove vi backwards compatibility
+set nojoinspaces
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set nowritebackup
+set nrformats= " when using c-a and c-x do not assume 007 as octal
+set number " line numbers
+set numberwidth=1
+set omnifunc=on " autocomplete function
+set ruler         " show the cursor position all the time
+set scrolloff=3 " lines before EOF
+set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
+set shiftwidth=2 " tabs
+set showcmd " show mode
+set showmatch " show matching elements
+set smartcase " if there are caps, go case-sensitive
+set smartindent " advanced indent
+set softtabstop=2 " tabs
+set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]%{fugitive#statusline()}
+set t_Co=256 " set 256 for terminal colors
+set tabstop=2 " tab with
+set textwidth=80
+set undodir=/tmp,.
+set undofile
+set undolevels=10000
+set virtualedit=block " allow virtual editing in Visual block mode                                                                                                    
+set wildmenu " command-line completion
+set wrapscan " search loop
 
 " Automatic formatting
 autocmd BufWritePre *.rb :%s/\s\+$//e
@@ -102,6 +120,8 @@ autocmd BufWritePre *.slim :%s/\s\+$//e
 au BufNewFile * set noeol
 au BufRead,BufNewFile *.go set filetype=go
 au BufNewFile,BufRead *.json.jbuilder set ft=ruby
+au BufNewFile,BufRead Gemfile set ft=ruby
+au BufNewFile,BufRead Gemfile.lock set ft=ruby
 
 " No show command
 autocmd VimEnter * set nosc
@@ -115,6 +135,9 @@ nmap <leader>fef ggVG=
 
 " remove unneeded whitespaces
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" search and replace selected text
+vnoremap <C-h> "hy:%s/<C-r>h//gc<left><left><left>
 
 " Open new buffers
 nmap <leader>s<left>   :leftabove  vnew<cr>
@@ -169,10 +192,9 @@ let g:syntastic_always_populate_loc_list = 1
 
 
 "tabs
-nmap <C-f>   <Esc>:tabnext<CR>
-noremap <C-t>     <Esc>:tabnew<CR>
-nnoremap <C-x> :tabclose<CR>
-nnoremap <Leader>q> :tabclose<CR>
+nmap     <C-f>        <Esc>:tabnext<CR>
+noremap  <C-t>     <Esc>:tabnew<CR>
+nnoremap <C-x>         :tabclose<CR>
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'r'
@@ -189,8 +211,8 @@ endif
 
 
 " Save and load session
-map <C-k> :mksession! ~/vim_session <cr> 
-map <C-l> :source ~/vim_session <cr>    
+map <C-k> :mksession! ~/vim_session <cr>
+map <C-l> :source ~/vim_session <cr>
 
 " Quit with :Q
 command -nargs=0 Quit :qa!
