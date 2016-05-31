@@ -1,15 +1,26 @@
-echo 'loading Bennis bashrc v1.09'
+echo 'loading Bennis bashrc v1.12'
 
 alias r="source ~/.bashrc"
+alias edit_bash="vim ~/.bashrc"
 alias x="cd ~/xing/"
+alias x_notes="cat ~/xing/notes.txt"
 alias y="cd ~/xing/yoda"
+alias j="cd ~/xing/jobs"
 alias gh="cd ~/github"
 
-alias sandbox_reset="xing e r dev-benjamin-hiltpolt && xing e r
-test-benjamin-hiltpolt && xing e r edge-benjamin-hiltpolt"
+alias prepare_deploy="bundle exec rake changelog:update"
+alias sandbox_reset="xing e r dev-benjamin-hiltpolt"
+#&& xing e r
+#test-benjamin-hiltpolt && xing e r edge-benjamin-hiltpolt"
 alias sandbox_services="xing s r -s ds_autocompletion yoda ds_entity-matching &&
   xing s r -s ds_autocompletion yoda ds_entity-matching --host test && xing s r
 -s ds_autocompletion yoda ds_entity-matching --host edge"
+
+alias ssh_sand='ssh vagrant@dev-benjamin-hiltpolt.env.xing.com'
+alias ssh_sand2='ssh vagrant@dev2-benjamin-hiltpolt.env.xing.com'
+
+alias yod_re='xing sandbox sync -f --app yoda'
+alias jobs_re='xing sandbox sync -f --app jobs'
 
 # Foreman 
 alias bef='bundle exec foreman start'
@@ -29,13 +40,15 @@ alias fixpry='stty echo'
 alias installpg_gem="gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/9.3/bin/pg_config"
 
 alias g='git'
-alias gl='git log'
-alias gs='git status'
-alias gc='git commit'
 alias ga='git add' 
-alias gp='git pull' 
+alias ga='git branch' 
+alias gc='git commit'
 alias gd='git diff HEAD@{1}'
+alias gl='git log'
+alias gp='git pull' 
+alias gs='git status'
 alias gitconfig='cat ~/.gitconfig'
+alias xingnotes='cat ~/xing/notes.txt'
 
 alias be='bundle exec'
 alias b='bundle'

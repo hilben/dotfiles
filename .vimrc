@@ -12,6 +12,8 @@ Plugin 'tpope/vim-sensible'
 
 " Some default settings
 Plugin 'tpope/vim-rvm'
+Plugin 'shougo/vimproc'
+Plugin 'shougo/vimshell'
 
 " Git plugin
 Plugin 'tpope/vim-fugitive'
@@ -25,7 +27,7 @@ Plugin 'Lokaltog/vim-powerline'
 
 " Search
 Plugin 'rking/ag.vim'
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
 Plugin 'lokaltog/vim-easymotion'
 Plugin 'Shougo/unite.vim'
 
@@ -47,6 +49,11 @@ Plugin 'nanotech/jellybeans.vim'
 
 " Tagbar (not working)
 Plugin 'majutsushi/tagbar'
+
+" Languages
+" Ruby
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'thoughtbot/vim-rspec'
 
 call vundle#end()
 
@@ -139,12 +146,6 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " search and replace selected text
 vnoremap <C-h> "hy:%s/<C-r>h//gc<left><left><left>
 
-" Open new buffers
-nmap <leader>s<left>   :leftabove  vnew<cr>
-nmap <leader>s<right>  :rightbelow vnew<cr>
-nmap <leader>s<up>     :leftabove  new<cr>
-nmap <leader>s<down>   :rightbelow new<cr>
-
 " Disable cursors
 inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
@@ -159,12 +160,6 @@ noremap   <Right>  <NOP>
 nmap s <Plug>(easymotion-s2)
 
 " Resize buffers
-if bufwinnr(1)
-  nmap Ä <C-W><<C-W><
-  nmap Ö <C-W>><C-W>>
-  nmap ö <C-W>-<C-W>-
-  nmap ä <C-W>+<C-W>+
-endif
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
@@ -178,10 +173,6 @@ nmap <Leader>r :RuboCop<CR
 nmap <Leader>ra :RuboCop -a<CR>
 
 " Syntastic
-"let g:syntastic_mode_map = { 'mode': 'passive' }
-"let g:syntastic_ruby_exec = '~/.rbenv/versions/bin/ruby'
-"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-"nnoremap <Leader>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 let g:syntastic_auto_jump = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
@@ -197,18 +188,23 @@ noremap  <C-t>     <Esc>:tabnew<CR>
 nnoremap <C-x>         :tabclose<CR>
 
 " CtrlP
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_by_filename = 1
-let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth = 40
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-" set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-let g:ctrlp_custom_ignore = { 'dir':  '\v[\/]\.(git|hg|svn)$', 'file': '\v\.(exe|so|dll)$', 'link': 'some_bad_symbolic_links'}
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
+" let g:ctrlp_working_path_mode = 'r'
+" let g:ctrlp_by_filename = 1
+" let g:ctrlp_max_files = 0
+" let g:ctrlp_max_depth = 40
+" set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+" " set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+" let g:ctrlp_custom_ignore = { 'dir':  '\v[\/]\.(git|hg|svn)$', 'file': '\v\.(exe|so|dll)$', 'link': 'some_bad_symbolic_links'}
+" let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+" if executable('ag')
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" endif
 
+" RSpec.vim mappings
+map <Leader>qq :call RunCurrentSpecFile()<CR>
+map <Leader>qw :call RunNearestSpec()<CR>
+map <Leader>ww :call RunLastSpec()<CR>
+map <Leader>qa :call RunAllSpecs()<CR>
 
 " Save and load session
 map <C-k> :mksession! ~/vim_session <cr>
@@ -216,3 +212,67 @@ map <C-l> :source ~/vim_session <cr>
 
 " Quit with :Q
 command -nargs=0 Quit :qa!
+
+""" UNITE sTUFF
+" Unite, main interface
+nnoremap <LEADER>u :Unite -start-insert<CR>
+" Unite, file search
+map <C-p> :Unite -start-insert file_rec/async<CR>
+" Unite, buffer and file search
+nnoremap <LEADER>a :Unite -start-insert buffer file_rec/async<CR>
+" Unite, buffer file search
+nnoremap <LEADER>b :Unite -start-insert buffer<CR>
+" Unite, grep in all files
+nnoremap <LEADER>g :Unite grep:<CR>
+
+" set the fuzzy engine for searching
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#source('file,file/new,buffer,file_rec,file_rec/async', 'matchers', 'matcher_fuzzy')
+call unite#custom#source('file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy'])
+call unite#custom#source('buffer,file,file_rec,file_rec/async', 'sorters', 'sorter_selecta')
+" maximum charachers for fuzzy
+let g:unite_matcher_fuzzy_max_input_length = 50
+
+" add an extra space after comment symbol
+let NERDSpaceDelims=1
+
+" command for file searching, ag is blazing fast
+if executable('ag')
+  " Use ag in unite grep source.
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '-i --line-numbers --nocolor --nogroup --hidden --ignore public/* --ignore tmp/* --ignore vendor/* --ignore ' .
+  \  '''.hg'' --ignore ''.svn'' --ignore ''*.sock'' --ignore ''tmp'' --ignore ''log'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+  " use ag for file searching
+  let g:unite_source_rec_async_command='ag -i --nocolor --nogroup --ignore "tmp" --ignore "log" --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
+  let g:unite_source_history_yank_enable=1
+  " cache the results
+  let g:unite_source_rec_max_cache_files=500000
+endif
+" set sorting
+call unite#filters#sorter_default#use(['sorter_rank', ''])
+call unite#custom#source('buffer', 'sorters', 'sorter_ftime,sorter_rank,sorter_reverse')
+" custom bindings inside Unite window
+autocmd FileType unite call s:unite_my_settings()
+
+function! s:unite_my_settings()
+  nmap <buffer> <C-k>     <Plug>(unite_toggle_auto_preview)
+  nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+  imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+  imap <silent><buffer><expr> <C-s> unite#do_action('split')
+  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+  nmap <silent><buffer><expr> s unite#do_action('split')
+  nmap <silent><buffer><expr> v unite#do_action('vsplit')
+  nmap <silent><buffer><expr> t unite#do_action('tabopen')
+endfunction
+
+
+" added
+set noshowmatch         " Don't match parentheses/brackets
+set nocursorline        " Don't paint cursor line
+set nocursorcolumn      " Don't paint cursor column
+set lazyredraw          " Wait to redraw
+set scrolljump=8        " Scroll 8 lines at a time at bottom/top
+let html_no_rendering=1 " Don't render italic, bold, links in HTML
