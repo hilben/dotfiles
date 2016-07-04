@@ -214,17 +214,6 @@ map <C-l> :source ~/vim_session <cr>
 command -nargs=0 Quit :qa!
 
 """ UNITE sTUFF
-" Unite, main interface
-nnoremap <LEADER>u :Unite -start-insert<CR>
-" Unite, file search
-map <C-p> :Unite -start-insert file_rec/async<CR>
-" Unite, buffer and file search
-nnoremap <LEADER>a :Unite -start-insert buffer file_rec/async<CR>
-" Unite, buffer file search
-nnoremap <LEADER>b :Unite -start-insert buffer<CR>
-" Unite, grep in all files
-nnoremap <LEADER>g :Unite grep:<CR>
-
 " set the fuzzy engine for searching
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom#source('file,file/new,buffer,file_rec,file_rec/async', 'matchers', 'matcher_fuzzy')
@@ -233,19 +222,18 @@ call unite#custom#source('buffer,file,file_rec,file_rec/async', 'sorters', 'sort
 " maximum charachers for fuzzy
 let g:unite_matcher_fuzzy_max_input_length = 50
 
-" add an extra space after comment symbol
-let NERDSpaceDelims=1
-
-" command for file searching, ag is blazing fast
-if executable('ag')
+if executable('pt')
   " Use ag in unite grep source.
-  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_command = 'pt'
   let g:unite_source_grep_default_opts =
-  \ '-i --line-numbers --nocolor --nogroup --hidden --ignore public/* --ignore tmp/* --ignore vendor/* --ignore ' .
-  \  '''.hg'' --ignore ''.svn'' --ignore ''*.sock'' --ignore ''tmp'' --ignore ''log'' --ignore ''.git'' --ignore ''.bzr'''
+  \ '-i --vimgrep --line-numbers --nocolor --nogroup --hidden --ignore ' .
+  \ '''.hg'' --ignore ''.svn'' --ignore ''*.sock'' --ignore ''tmp'' --ignore ''log'' --ignore ''.git'' --ignore ''.bzr'''
   let g:unite_source_grep_recursive_opt = ''
   " use ag for file searching
-  let g:unite_source_rec_async_command='ag -i --nocolor --nogroup --ignore "tmp" --ignore "log" --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
+  let g:unite_source_rec_async_command = ['pt', '-i', '--nocolor', '--nogroup', '--ignore "tmp"', '--ignore "log"',
+        \ '--ignore ".hg"', '--ignore ".svn"', '--ignore ".git"', '--ignore ".bzr"', '--hidden', '-g', '']
+  let g:unite_source_rec_async_command = ['pt', '-i', '--nocolor', '--nogroup', '--hidden', '-g', '']
+
   let g:unite_source_history_yank_enable=1
   " cache the results
   let g:unite_source_rec_max_cache_files=500000
@@ -255,7 +243,6 @@ call unite#filters#sorter_default#use(['sorter_rank', ''])
 call unite#custom#source('buffer', 'sorters', 'sorter_ftime,sorter_rank,sorter_reverse')
 " custom bindings inside Unite window
 autocmd FileType unite call s:unite_my_settings()
-
 function! s:unite_my_settings()
   nmap <buffer> <C-k>     <Plug>(unite_toggle_auto_preview)
   nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
@@ -267,6 +254,17 @@ function! s:unite_my_settings()
   nmap <silent><buffer><expr> v unite#do_action('vsplit')
   nmap <silent><buffer><expr> t unite#do_action('tabopen')
 endfunction
+
+" Unite, main interface
+nnoremap <LEADER>u :Unite -start-insert<CR>
+" Unite, file search
+nnoremap <LEADER>a:Unite -start-insert file_rec/async<CR>
+" Unite, buffer and file search
+map <C-p> :Unite -start-insert buffer file_rec/async<CR>
+" Unite, buffer file search
+nnoremap <LEADER>b :Unite -start-insert buffer<CR>
+" Unite, grep in all files
+nnoremap <LEADER>g :Unite grep:<CR>
 
 
 " added

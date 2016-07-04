@@ -1,12 +1,14 @@
-echo 'loading Bennis bashrc v1.12'
+echo 'loading bens bashrc v1.14'
 
 alias r="source ~/.bashrc"
 alias edit_bash="vim ~/.bashrc"
+alias edit_bash_secure="vim ~/.bashrc_secure"
 alias x="cd ~/xing/"
 alias x_notes="cat ~/xing/notes.txt"
 alias y="cd ~/xing/yoda"
 alias j="cd ~/xing/jobs"
 alias gh="cd ~/github"
+alias n="cd ~/github/spacenexus"
 
 alias prepare_deploy="bundle exec rake changelog:update"
 alias sandbox_reset="xing e r dev-benjamin-hiltpolt"
@@ -16,11 +18,16 @@ alias sandbox_services="xing s r -s ds_autocompletion yoda ds_entity-matching &&
   xing s r -s ds_autocompletion yoda ds_entity-matching --host test && xing s r
 -s ds_autocompletion yoda ds_entity-matching --host edge"
 
-alias ssh_sand='ssh vagrant@dev-benjamin-hiltpolt.env.xing.com'
-alias ssh_sand2='ssh vagrant@dev2-benjamin-hiltpolt.env.xing.com'
+source ~/.bashrc_secure
 
 alias yod_re='xing sandbox sync -f --app yoda'
 alias jobs_re='xing sandbox sync -f --app jobs'
+alias yod_re2='xing sandbox sync -f --app yoda --host dev2-benjamin-hiltpolt.env.xing.com'
+alias jobs_re2='xing sandbox sync -f --app jobs --host dev2-benjamin-hiltpolt.env.xing.com'
+alias yod_re3='xing sandbox sync -f --app yoda --host dev3-benjamin-hiltpolt.env.xing.com'
+alias jobs_re3='xing sandbox sync -f --app jobs --host dev3-benjamin-hiltpolt.env.xing.com'
+alias yod_kaza='xing sandbox sync -f --app yoda --host dev-katarzyna-zarnowiec.env.xing.com'
+alias yod_kaza_test='xing sandbox sync -f --app yoda --host test-katarzyna-zarnowiec.env.xing.com'
 
 # Foreman 
 alias bef='bundle exec foreman start'
@@ -41,7 +48,7 @@ alias installpg_gem="gem install pg -- --with-pg-config=/Applications/Postgres.a
 
 alias g='git'
 alias ga='git add' 
-alias ga='git branch' 
+alias gb='git branch' 
 alias gc='git commit'
 alias gd='git diff HEAD@{1}'
 alias gl='git log'
@@ -53,6 +60,7 @@ alias xingnotes='cat ~/xing/notes.txt'
 alias be='bundle exec'
 alias b='bundle'
 alias bes='bundle exec rspec'
+alias bes_no_feature="bundle exec spring rspec -c --exclude-pattern 'spec/features/**/*_spec.rb'"
 
 alias bem='be rake db:migrate'
 alias ber='be rake db:reset'
@@ -96,4 +104,4 @@ function prepare_cl() {
 #export INFLUXDB_HOST="192.168.59.103"
 #export STATISTICS_DB_HOST="192.168.59.103"
 #export STATISTICS_HTTP_HOST="localhost:3001"
-#ruby ~/github/cats/print_texts.rb
+ruby ~/github/printtext/print_texts.rb
