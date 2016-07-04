@@ -20,14 +20,6 @@ alias sandbox_services="xing s r -s ds_autocompletion yoda ds_entity-matching &&
 
 source ~/.bashrc_secure
 
-alias yod_re='xing sandbox sync -f --app yoda'
-alias jobs_re='xing sandbox sync -f --app jobs'
-alias yod_re2='xing sandbox sync -f --app yoda --host dev2-benjamin-hiltpolt.env.xing.com'
-alias jobs_re2='xing sandbox sync -f --app jobs --host dev2-benjamin-hiltpolt.env.xing.com'
-alias yod_re3='xing sandbox sync -f --app yoda --host dev3-benjamin-hiltpolt.env.xing.com'
-alias jobs_re3='xing sandbox sync -f --app jobs --host dev3-benjamin-hiltpolt.env.xing.com'
-alias yod_kaza='xing sandbox sync -f --app yoda --host dev-katarzyna-zarnowiec.env.xing.com'
-alias yod_kaza_test='xing sandbox sync -f --app yoda --host test-katarzyna-zarnowiec.env.xing.com'
 
 # Foreman 
 alias bef='bundle exec foreman start'
