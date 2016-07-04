@@ -63,12 +63,11 @@ filetype plugin indent on
 
 let mapleader=","
 
-
 filetype plugin indent on
 filetype plugin on " enable plugins
 hi CursorColumn ctermbg=4
 set autoindent " code autoindent
-set autowrite     " Automatically :write before running commands
+set autowrite " Automatically :write before running commands
 set backspace=indent,eol,start
 set backup " backup files
 set backupdir=/tmp,. " backup files
@@ -181,7 +180,6 @@ let g:syntastic_filetype_map = { 'javascript.doxygen': 'javascript' }
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_always_populate_loc_list = 1
 
-
 "tabs
 nmap     <C-f>        <Esc>:tabnext<CR>
 noremap  <C-t>     <Esc>:tabnew<CR>
@@ -226,10 +224,10 @@ if executable('pt')
   " Use ag in unite grep source.
   let g:unite_source_grep_command = 'pt'
   let g:unite_source_grep_default_opts =
-  \ '-i --vimgrep --line-numbers --nocolor --nogroup --hidden --ignore ' .
-  \ '''.hg'' --ignore ''.svn'' --ignore ''*.sock'' --ignore ''tmp'' --ignore ''log'' --ignore ''.git'' --ignore ''.bzr'''
+        \ '-i --vimgrep --line-numbers --nocolor --nogroup --hidden --ignore ' .
+        \ '''.hg'' --ignore ''.svn'' --ignore ''*.sock'' --ignore ''tmp'' --ignore ''log'' --ignore ''.git'' --ignore ''.bzr'''
   let g:unite_source_grep_recursive_opt = ''
-  " use ag for file searching
+  " use pt for file searching
   let g:unite_source_rec_async_command = ['pt', '-i', '--nocolor', '--nogroup', '--ignore "tmp"', '--ignore "log"',
         \ '--ignore ".hg"', '--ignore ".svn"', '--ignore ".git"', '--ignore ".bzr"', '--hidden', '-g', '']
   let g:unite_source_rec_async_command = ['pt', '-i', '--nocolor', '--nogroup', '--hidden', '-g', '']
@@ -237,7 +235,9 @@ if executable('pt')
   let g:unite_source_history_yank_enable=1
   " cache the results
   let g:unite_source_rec_max_cache_files=500000
+  let g:unite_source_grep_encoding = 'utf-8'
 endif
+
 " set sorting
 call unite#filters#sorter_default#use(['sorter_rank', ''])
 call unite#custom#source('buffer', 'sorters', 'sorter_ftime,sorter_rank,sorter_reverse')
@@ -247,6 +247,7 @@ function! s:unite_my_settings()
   nmap <buffer> <C-k>     <Plug>(unite_toggle_auto_preview)
   nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
   imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+  imap <buffer> <C-u>     <Plug>(unite_redraw)
   imap <silent><buffer><expr> <C-s> unite#do_action('split')
   imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
   imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
@@ -265,12 +266,4 @@ map <C-p> :Unite -start-insert buffer file_rec/async<CR>
 nnoremap <LEADER>b :Unite -start-insert buffer<CR>
 " Unite, grep in all files
 nnoremap <LEADER>g :Unite grep:<CR>
-
-
-" added
-set noshowmatch         " Don't match parentheses/brackets
-set nocursorline        " Don't paint cursor line
-set nocursorcolumn      " Don't paint cursor column
-set lazyredraw          " Wait to redraw
-set scrolljump=8        " Scroll 8 lines at a time at bottom/top
-let html_no_rendering=1 " Don't render italic, bold, links in HTML
+nnoremap <LEADER>y :unite_redraw:<CR>
