@@ -24,6 +24,7 @@ Plugin 'yegappan/mru'
 " Gui
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-powerline'
+Plugin 'kristijanhusak/vim-multiple-cursors'
 
 " Search
 Plugin 'rking/ag.vim'
@@ -49,6 +50,7 @@ Plugin 'nanotech/jellybeans.vim'
 
 " Tagbar (not working)
 Plugin 'majutsushi/tagbar'
+
 
 " Languages
 " Ruby
@@ -211,7 +213,12 @@ map <C-l> :source ~/vim_session <cr>
 " Quit with :Q
 command -nargs=0 Quit :qa!
 
-""" UNITE sTUFF
+" Multi line
+" Default highlighting (see help :highlight and help :highlight-link)
+highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
+highlight link multiple_cursors_visual Visual
+
+""" UNITE STUFF
 " set the fuzzy engine for searching
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom#source('file,file/new,buffer,file_rec,file_rec/async', 'matchers', 'matcher_fuzzy')

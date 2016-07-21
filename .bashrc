@@ -7,6 +7,7 @@ alias x="cd ~/xing/"
 alias x_notes="cat ~/xing/notes.txt"
 alias y="cd ~/xing/yoda"
 alias j="cd ~/xing/jobs"
+alias c="cd ~/xing/cra"
 alias gh="cd ~/github"
 alias n="cd ~/github/spacenexus"
 
@@ -91,6 +92,8 @@ function prepare_cl() {
   echo "Not a git repository, can do anything"
     fi
 }
+
+complete -C `which xing_autocompletion` -o default xing
 
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #export INFLUXDB_HOST="192.168.59.103"
