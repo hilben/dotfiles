@@ -39,7 +39,7 @@ Plugin 'scrooloose/syntastic'
 " highlighting
 Plugin 'omer/vim-sparql'
 Plugin 'othree/html5.vim'
-" Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'slim-template/vim-slim'
@@ -56,6 +56,8 @@ Plugin 'majutsushi/tagbar'
 " Ruby
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'thoughtbot/vim-rspec'
+" Javascript
+Plugin 'maksimr/vim-jsbeautify'
 
 call vundle#end()
 
@@ -130,6 +132,7 @@ au BufRead,BufNewFile *.go set filetype=go
 au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 au BufNewFile,BufRead Gemfile set ft=ruby
 au BufNewFile,BufRead Gemfile.lock set ft=ruby
+au BufNewFile, BufRead *.ejs set ft=html
 
 " No show command
 autocmd VimEnter * set nosc
@@ -172,6 +175,9 @@ let NERDTreeHighlightCursorline=1
 let g:vimrubocop_config = '.rubocop.yml'
 nmap <Leader>r :RuboCop<CR
 nmap <Leader>ra :RuboCop -a<CR>
+
+" js beautify
+map <Leader>j :call JsBeautify()<CR>
 
 " Syntastic
 let g:syntastic_auto_jump = 0
