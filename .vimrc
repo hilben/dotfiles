@@ -132,7 +132,7 @@ au BufRead,BufNewFile *.go set filetype=go
 au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 au BufNewFile,BufRead Gemfile set ft=ruby
 au BufNewFile,BufRead Gemfile.lock set ft=ruby
-au BufNewFile, BufRead *.ejs set ft=html
+au BufNewFile,BufRead *.ejs set ft=html
 
 " No show command
 autocmd VimEnter * set nosc
