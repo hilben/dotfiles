@@ -30,7 +30,8 @@ Plugin 'kristijanhusak/vim-multiple-cursors'
 Plugin 'rking/ag.vim'
 " Plugin 'kien/ctrlp.vim'
 Plugin 'lokaltog/vim-easymotion'
-Plugin 'Shougo/unite.vim'
+" Plugin 'Shougo/unite.vim'
+Plugin 'junegunn/fzf.vim'
 
 " Code analysis
 Plugin 'ngmy/vim-rubocop'
@@ -115,7 +116,7 @@ set textwidth=80
 set undodir=/tmp,.
 set undofile
 set undolevels=10000
-set virtualedit=block " allow virtual editing in Visual block mode                                                                                                    
+set virtualedit=block " allow virtual editing in Visual block mode
 set wildmenu " command-line completion
 set wrapscan " search loop
 
@@ -161,7 +162,7 @@ noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
 " Gif config
-nmap s <Plug>(easymotion-s2)
+nmap <Leader>s <Plug>(easymotion-s2)
 
 " Resize buffers
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -173,7 +174,7 @@ let NERDTreeHighlightCursorline=1
 
 " rubo cop
 let g:vimrubocop_config = '.rubocop.yml'
-nmap <Leader>r :RuboCop<CR
+nmap <Leader>r :RuboCop<CR>
 nmap <Leader>ra :RuboCop -a<CR>
 
 " js beautify
@@ -189,9 +190,13 @@ let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_always_populate_loc_list = 1
 
 "tabs
-nmap     <C-f>        <Esc>:tabnext<CR>
-noremap  <C-t>     <Esc>:tabnew<CR>
-nnoremap <C-x>         :tabclose<CR>
+nmap     <C-f> <Esc>:tabnext<CR>
+noremap  <C-t> <Esc>:tabnew<CR>
+nnoremap <C-x>      :tabclose<CR>
+
+" FZF
+" " If installed using Homebrew
+ set rtp+=/usr/local/opt/fzf
 
 " CtrlP
 " let g:ctrlp_working_path_mode = 'r'
@@ -199,7 +204,6 @@ nnoremap <C-x>         :tabclose<CR>
 " let g:ctrlp_max_files = 0
 " let g:ctrlp_max_depth = 40
 " set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-" " set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 " let g:ctrlp_custom_ignore = { 'dir':  '\v[\/]\.(git|hg|svn)$', 'file': '\v\.(exe|so|dll)$', 'link': 'some_bad_symbolic_links'}
 " let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 " if executable('ag')
@@ -226,57 +230,59 @@ highlight link multiple_cursors_visual Visual
 
 """ UNITE STUFF
 " set the fuzzy engine for searching
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom#source('file,file/new,buffer,file_rec,file_rec/async', 'matchers', 'matcher_fuzzy')
-call unite#custom#source('file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy'])
-call unite#custom#source('buffer,file,file_rec,file_rec/async', 'sorters', 'sorter_selecta')
-" maximum charachers for fuzzy
-let g:unite_matcher_fuzzy_max_input_length = 50
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#custom#source('file,file/new,buffer,file_rec,file_rec/async', 'matchers', 'matcher_fuzzy')
+"call unite#custom#source('file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy'])
+"call unite#custom#source('buffer,file,file_rec,file_rec/async', 'sorters', 'sorter_selecta')
+"" maximum charachers for fuzzy
+"let g:unite_matcher_fuzzy_max_input_length = 50
+"
+"if executable('ag')
+"  " Use ag in unite grep source.
+"  let g:unite_source_grep_command = 'ag'
+"  let g:unite_source_grep_default_opts =
+"        \ '-i --vimgrep --line-numbers --nocolor --nogroup --hidden --ignore ' .
+"        \ '''.hg'' --ignore ''.svn'' --ignore ''*.sock'' --ignore ''tmp'' --ignore ''log'' --ignore ''.git'' --ignore ''.bzr'''
+"  let g:unite_source_grep_recursive_opt = ''
+"  " use pt for file searching
+"  let g:unite_source_rec_async_command = ['pt', '-i', '--nocolor', '--nogroup', '--ignore "tmp"', '--ignore "log"',
+"        \ '--ignore ".hg"', '--ignore ".svn"', '--ignore ".git"', '--ignore ".bzr"', '--hidden', '-g', '']
+"  let g:unite_source_rec_async_command = ['pt', '-i', '--nocolor', '--nogroup', '--hidden', '-g', '']
+"
+"  let g:unite_source_history_yank_enable=1
+"  " cache the results
+"  let g:unite_source_rec_max_cache_files=500000
+"  let g:unite_source_grep_encoding = 'utf-8'
+"endif
+"
+"" set sorting
+"call unite#filters#sorter_default#use(['sorter_rank', ''])
+"call unite#custom#source('buffer', 'sorters', 'sorter_ftime,sorter_rank,sorter_reverse')
+"" custom bindings inside Unite window
+"autocmd FileType unite call s:unite_my_settings()
+"function! s:unite_my_settings()
+"  nmap <buffer> <C-k>     <Plug>(unite_toggle_auto_preview)
+"  nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+"  imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+"  imap <buffer> <C-u>     <Plug>(unite_redraw)
+"  imap <silent><buffer><expr> <C-s> unite#do_action('split')
+"  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+"  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+"  nmap <silent><buffer><expr> s unite#do_action('split')
+"  nmap <silent><buffer><expr> v unite#do_action('vsplit')
+"  nmap <silent><buffer><expr> t unite#do_action('tabopen')
+"endfunction
+"
+"" Unite, main interface
+"nnoremap <LEADER>u :Unite -start-insert<CR>
+"" Unite, file search
+"nnoremap <LEADER>a:Unite -start-insert file_rec/async<CR>
+"" Unite, buffer and file search
+"" map <C-m> :Unite -start-insert buffer file_rec/async<CR>
+"" Unite, buffer file search
+"nnoremap <LEADER>b :Unite -start-insert buffer<CR>
+"" Unite, grep in all files
+"nnoremap <LEADER>g :Unite grep:<CR>
+"nnoremap <LEADER>y :unite_redraw:<CR>
 
-if executable('pt')
-  " Use ag in unite grep source.
-  let g:unite_source_grep_command = 'pt'
-  let g:unite_source_grep_default_opts =
-        \ '-i --vimgrep --line-numbers --nocolor --nogroup --hidden --ignore ' .
-        \ '''.hg'' --ignore ''.svn'' --ignore ''*.sock'' --ignore ''tmp'' --ignore ''log'' --ignore ''.git'' --ignore ''.bzr'''
-  let g:unite_source_grep_recursive_opt = ''
-  " use pt for file searching
-  let g:unite_source_rec_async_command = ['pt', '-i', '--nocolor', '--nogroup', '--ignore "tmp"', '--ignore "log"',
-        \ '--ignore ".hg"', '--ignore ".svn"', '--ignore ".git"', '--ignore ".bzr"', '--hidden', '-g', '']
-  let g:unite_source_rec_async_command = ['pt', '-i', '--nocolor', '--nogroup', '--hidden', '-g', '']
-
-  let g:unite_source_history_yank_enable=1
-  " cache the results
-  let g:unite_source_rec_max_cache_files=500000
-  let g:unite_source_grep_encoding = 'utf-8'
-endif
-
-" set sorting
-call unite#filters#sorter_default#use(['sorter_rank', ''])
-call unite#custom#source('buffer', 'sorters', 'sorter_ftime,sorter_rank,sorter_reverse')
-" custom bindings inside Unite window
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
-  nmap <buffer> <C-k>     <Plug>(unite_toggle_auto_preview)
-  nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
-  imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
-  imap <buffer> <C-u>     <Plug>(unite_redraw)
-  imap <silent><buffer><expr> <C-s> unite#do_action('split')
-  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
-  nmap <silent><buffer><expr> s unite#do_action('split')
-  nmap <silent><buffer><expr> v unite#do_action('vsplit')
-  nmap <silent><buffer><expr> t unite#do_action('tabopen')
-endfunction
-
-" Unite, main interface
-nnoremap <LEADER>u :Unite -start-insert<CR>
-" Unite, file search
-nnoremap <LEADER>a:Unite -start-insert file_rec/async<CR>
-" Unite, buffer and file search
-map <C-p> :Unite -start-insert buffer file_rec/async<CR>
-" Unite, buffer file search
-nnoremap <LEADER>b :Unite -start-insert buffer<CR>
-" Unite, grep in all files
-nnoremap <LEADER>g :Unite grep:<CR>
-nnoremap <LEADER>y :unite_redraw:<CR>
+map <C-p> :FZF<CR>

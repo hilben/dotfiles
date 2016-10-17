@@ -4,20 +4,28 @@ alias r="source ~/.bashrc"
 alias edit_bash="vim ~/.bashrc"
 alias edit_bash_secure="vim ~/.bashrc_secure"
 alias x="cd ~/xing/"
+alias p="cd ~/xing/profile"
+alias kpi="cd ~/xing/be_kpi"
 alias x_notes="cat ~/xing/notes.txt"
 alias y="cd ~/xing/yoda"
 alias j="cd ~/xing/jobs"
 alias c="cd ~/xing/cra"
 alias gh="cd ~/github"
 alias n="cd ~/github/spacenexus"
+alias sr="cd ~/github/spacerover"
+alias h="cd ~/xing/hermes"
 
 alias prepare_deploy="bundle exec rake changelog:update"
 alias sandbox_reset="xing e r dev-benjamin-hiltpolt"
+alias sandbox_prepate="xing xingbox  exec --app yoda 'rm -rf
+/app/public/assets/jobmanager/'"
 #&& xing e r
 #test-benjamin-hiltpolt && xing e r edge-benjamin-hiltpolt"
 alias sandbox_services="xing s r -s ds_autocompletion yoda ds_entity-matching &&
   xing s r -s ds_autocompletion yoda ds_entity-matching --host test && xing s r
 -s ds_autocompletion yoda ds_entity-matching --host edge"
+
+alias rpsec="rspec"
 
 source ~/.bashrc_secure
 
@@ -27,12 +35,9 @@ alias bef='bundle exec foreman start'
 alias mahout="~/mahout-distribution-0.9/bin/mahout"
 #alias fitman="ssh benhil@192.168.65.156"
 alias fitman="ssh benhil@138.232.65.156"
-alias dockerselenium="export HUB_PORT_4444_TCP_ADDR=192.168.59.103"
-alias dockerselenium_localhost="export HUB_PORT_4444_TCP_ADDR=localhost"
 
 alias docker_clean_up="source ~/.destroy_all_docker.sh"
 alias docker_remove_old_containers="source ~/.remove_old_containers.sh"
-
 alias docker_run_chrome="docker run -d -p 4444:4444 selenium/standalone-chrome:2.45.0"
 
 alias fixpry='stty echo'
@@ -100,3 +105,5 @@ complete -C `which xing_autocompletion` -o default xing
 #export STATISTICS_DB_HOST="192.168.59.103"
 #export STATISTICS_HTTP_HOST="localhost:3001"
 ruby ~/github/printtext/print_texts.rb
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
