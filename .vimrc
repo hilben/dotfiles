@@ -27,7 +27,7 @@ Plugin 'Lokaltog/vim-powerline'
 Plugin 'kristijanhusak/vim-multiple-cursors'
 
 " Search
-Plugin 'rking/ag.vim'
+"Plugin 'rking/ag.vim'
 " Plugin 'kien/ctrlp.vim'
 Plugin 'lokaltog/vim-easymotion'
 " Plugin 'Shougo/unite.vim'
@@ -66,7 +66,7 @@ color jellybeans
 
 filetype plugin indent on
 
-let mapleader=","
+let mapleader="\<Space>"
 
 filetype plugin indent on
 filetype plugin on " enable plugins
@@ -116,7 +116,7 @@ set textwidth=80
 set undodir=/tmp,.
 set undofile
 set undolevels=10000
-set virtualedit=block " allow virtual editing in Visual block mode
+set virtualedit=block " allow virtual editing in Visual block mode                                                                                                    
 set wildmenu " command-line completion
 set wrapscan " search loop
 
