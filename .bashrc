@@ -17,8 +17,7 @@ alias h="cd ~/xing/hermes"
 
 alias prepare_deploy="bundle exec rake changelog:update"
 alias sandbox_reset="xing e r dev-benjamin-hiltpolt"
-alias sandbox_prepate="xing xingbox  exec --app yoda 'rm -rf
-/app/public/assets/jobmanager/'"
+alias sandbox_prepare="xing x exec --app yoda 'rm -rf /app/public/assets/jobmanager/'"
 #&& xing e r
 #test-benjamin-hiltpolt && xing e r edge-benjamin-hiltpolt"
 alias sandbox_services="xing s r -s ds_autocompletion yoda ds_entity-matching &&
