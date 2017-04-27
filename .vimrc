@@ -26,11 +26,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'kristijanhusak/vim-multiple-cursors'
 
-" Snippets
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
-
-
 " Search
 Plugin 'lokaltog/vim-easymotion'
 Plugin 'junegunn/fzf.vim'
@@ -57,7 +52,6 @@ Plugin 'majutsushi/tagbar'
 " Languages
 " Ruby
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'thoughtbot/vim-rspec'
 " Javascript
 Plugin 'maksimr/vim-jsbeautify'
 
@@ -206,12 +200,6 @@ nnoremap <C-x>      :tabclose<CR>
 " FZF
  set rtp+=/usr/local/opt/fzf
 
-" RSpec.vim mappings
-map <Leader>qq :call RunCurrentSpecFile()<CR>
-map <Leader>qw :call RunNearestSpec()<CR>
-map <Leader>ww :call RunLastSpec()<CR>
-map <Leader>qa :call RunAllSpecs()<CR>
-
 " Save and load session
 map <C-k> :mksession! ~/vim_session <cr>
 map <C-c> :source ~/vim_session <cr>
@@ -221,6 +209,7 @@ command -nargs=0 Quit :qa!
 
 " Multi line
 " Default highlighting (see help :highlight and help :highlight-link)
+
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
 
