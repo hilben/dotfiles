@@ -214,7 +214,7 @@ map <Leader>qa :call RunAllSpecs()<CR>
 
 " Save and load session
 map <C-k> :mksession! ~/vim_session <cr>
-map <C-l> :source ~/vim_session <cr>
+map <C-c> :source ~/vim_session <cr>
 
 " Quit with :Q
 command -nargs=0 Quit :qa!

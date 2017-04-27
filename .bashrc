@@ -8,12 +8,16 @@ alias p="cd ~/xing/profile"
 alias kpi="cd ~/xing/be_kpi"
 alias x_notes="cat ~/xing/notes.txt"
 alias y="cd ~/xing/yoda"
+alias y2="cd ~/xing/yoda2"
 alias j="cd ~/xing/jobs"
 alias c="cd ~/xing/cra"
 alias gh="cd ~/github"
+alias db="cd ~/xing/redboard"
 alias n="cd ~/github/spacenexus"
 alias sr="cd ~/github/spacerover"
 alias h="cd ~/xing/hermes"
+alias e="~/exercism/elixir"
+alias cc="dscacheutil -flushcache"
 
 alias prepare_deploy="bundle exec rake changelog:update"
 alias sandbox_reset="xing e r dev-benjamin-hiltpolt"
@@ -28,16 +32,11 @@ alias rpsec="rspec"
 
 source ~/.bashrc_secure
 
-
 # Foreman 
 alias bef='bundle exec foreman start'
-alias mahout="~/mahout-distribution-0.9/bin/mahout"
-#alias fitman="ssh benhil@192.168.65.156"
-alias fitman="ssh benhil@138.232.65.156"
 
 alias docker_clean_up="source ~/.destroy_all_docker.sh"
 alias docker_remove_old_containers="source ~/.remove_old_containers.sh"
-alias docker_run_chrome="docker run -d -p 4444:4444 selenium/standalone-chrome:2.45.0"
 
 alias fixpry='stty echo'
 
@@ -51,8 +50,10 @@ alias gd='git diff HEAD@{1}'
 alias gl='git log'
 alias gp='git pull' 
 alias gs='git status'
+
 alias gitconfig='cat ~/.gitconfig'
 alias xingnotes='cat ~/xing/notes.txt'
+alias start_sql='mysqld --gdb'
 
 alias be='bundle exec'
 alias b='bundle'
@@ -62,21 +63,7 @@ alias bes_no_feature="bundle exec spring rspec -c --exclude-pattern 'spec/featur
 alias bem='be rake db:migrate'
 alias ber='be rake db:reset'
 
-alias rs='ruby -e "while 1
-begin
-system %q{bundle exec rspec}
-sleep 3
-rescue
-end
-end"'
-
-alias rsc='echo "while 1
-begin
-system %q{bundle exec rspec}
-sleep 3
-rescue
-end
-end" > run.rb' 
+alias wipe='echo '\''flush_all'\'' | nc localhost 11211'
 
 alias reload_bash="source ~/.bashrc"
 
@@ -98,11 +85,9 @@ function prepare_cl() {
 }
 
 complete -C `which xing_autocompletion` -o default xing
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
-#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-#export INFLUXDB_HOST="192.168.59.103"
-#export STATISTICS_DB_HOST="192.168.59.103"
-#export STATISTICS_HTTP_HOST="localhost:3001"
 ruby ~/github/printtext/print_texts.rb
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
