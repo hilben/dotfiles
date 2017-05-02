@@ -134,7 +134,6 @@ au BufNewFile,BufRead *.ejs set ft=html
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-:
 
 " No show command
 autocmd VimEnter * set nosc
@@ -195,10 +194,9 @@ let g:syntastic_always_populate_loc_list = 1
 "tabs
 nmap     <C-f> <Esc>:tabnext<CR>
 noremap  <C-t> <Esc>:tabnew<CR>
-nnoremap <C-x>      :tabclose<CR>
 
 " FZF
- set rtp+=/usr/local/opt/fzf
+set rtp+=/usr/local/opt/fzf
 
 " Save and load session
 map <C-k> :mksession! ~/vim_session <cr>
@@ -214,3 +212,4 @@ highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
 
 map <C-p> :FZF<CR>
+map <C-P> :Ag<CR>

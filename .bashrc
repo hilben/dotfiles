@@ -1,3 +1,4 @@
+#!/bin/bash
 echo 'loading bens bashrc v1.14'
 
 alias r="source ~/.bashrc"
@@ -67,10 +68,9 @@ alias wipe='echo '\''flush_all'\'' | nc localhost 11211'
 
 alias reload_bash="source ~/.bashrc"
 
-PATH=$PATH:~/
-
 export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/benjaminhiltpolt/.boot2docker/certs/boot2docker-vm
+export DOCKER_CERT_PATH=/Users/benjamin.hiltpolt/.docker/machine/machines/default
+export DOCKER_MACHINE_NAME=default
 export DOCKER_TLS_VERIFY=1
 
 ### Prepare release changelog
@@ -90,4 +90,3 @@ export LC_ALL=en_US.UTF-8
 
 ruby ~/github/printtext/print_texts.rb
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
