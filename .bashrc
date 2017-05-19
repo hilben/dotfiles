@@ -1,6 +1,12 @@
 #!/bin/bash
-echo 'loading bens bashrc v1.14'
+echo 'loading bens bashrc v1.15'
 
+export PATH=/opt/local/bin:$PATH
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
+
+eval "$(rbenv init -)"
 alias r="source ~/.bashrc"
 alias edit_bash="vim ~/.bashrc"
 alias edit_bash_secure="vim ~/.bashrc_secure"
@@ -19,6 +25,7 @@ alias sr="cd ~/github/spacerover"
 alias h="cd ~/xing/hermes"
 alias e="~/exercism/elixir"
 alias cc="dscacheutil -flushcache"
+alias featurer_on="xing x exec \"echo 'Featurer.add(:xtp_user, /.*/)' | bundle exec rails c\""
 
 alias prepare_deploy="bundle exec rake changelog:update"
 alias sandbox_reset="xing e r dev-benjamin-hiltpolt"
@@ -67,11 +74,6 @@ alias ber='be rake db:reset'
 alias wipe='echo '\''flush_all'\'' | nc localhost 11211'
 
 alias reload_bash="source ~/.bashrc"
-
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/benjamin.hiltpolt/.docker/machine/machines/default
-export DOCKER_MACHINE_NAME=default
-export DOCKER_TLS_VERIFY=1
 
 ### Prepare release changelog
 function prepare_cl() {

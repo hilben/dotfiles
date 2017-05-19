@@ -191,16 +191,12 @@ let g:syntastic_enable_elixir_checker = 1
 let g:syntastic_elixir_checkers = ['elixir']
 let g:syntastic_always_populate_loc_list = 1
 
-"tabs
-nmap     <C-f> <Esc>:tabnext<CR>
-noremap  <C-t> <Esc>:tabnew<CR>
-
 " FZF
 set rtp+=/usr/local/opt/fzf
 
 " Save and load session
-map <C-k> :mksession! ~/vim_session <cr>
-map <C-c> :source ~/vim_session <cr>
+" map <C-k> :mksession! ~/vim_session <cr>
+" map <C-c> :source ~/vim_session <cr>
 
 " Quit with :Q
 command -nargs=0 Quit :qa!
@@ -213,3 +209,4 @@ highlight link multiple_cursors_visual Visual
 
 map <C-p> :FZF<CR>
 map <C-i> :Ag<CR>
+nmap <Leader>w :Buffer<CR>
