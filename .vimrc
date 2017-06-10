@@ -5,29 +5,27 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Let Vundle manage Vundle
-Plugin 'gmarik/Vundle.vim'
 Plugin 'gmarik/vundle'
 
-Plugin 'tpope/vim-sensible'
+" Some vim default settings
+Plugin 'tpope/vim-sensible' 
 
 " Some default settings
-Plugin 'tpope/vim-rvm'
-Plugin 'shougo/vimproc'
-Plugin 'shougo/vimshell'
+"Plugin 'shougo/vimproc' " check if needed
 
 " Git plugin
 Plugin 'tpope/vim-fugitive'
 
-Plugin 'kana/vim-textobj-user'
-Plugin 'yegappan/mru'
-
 " Gui
 Plugin 'scrooloose/nerdtree'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'kristijanhusak/vim-multiple-cursors'
 
-" Search
+" Multi cursor§
+Plugin 'kristijanhusak/vim-multiple-cursors' " check if ever used
+
+" Search in current file
 Plugin 'lokaltog/vim-easymotion'
+
+" Search everywhere
 Plugin 'junegunn/fzf.vim'
 
 " Code analysis
@@ -146,7 +144,7 @@ imap hh <ESC>
 nmap <leader>fef ggVG=
 
 " remove unneeded whitespaces
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <Leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " search and replace selected text
 vnoremap <C-h> "hy:%s/<C-r>h//gc<left><left><left>
@@ -163,10 +161,6 @@ noremap   <Right>  <NOP>
 
 " Gif config
 nmap <Leader>s <Plug>(easymotion-s2)
-
-" Resize buffers
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
@@ -194,19 +188,21 @@ let g:syntastic_always_populate_loc_list = 1
 " FZF
 set rtp+=/usr/local/opt/fzf
 
-" Save and load session
-" map <C-k> :mksession! ~/vim_session <cr>
-" map <C-c> :source ~/vim_session <cr>
-
 " Quit with :Q
 command -nargs=0 Quit :qa!
 
 " Multi line
 " Default highlighting (see help :highlight and help :highlight-link)
-
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
 
 map <C-p> :FZF<CR>
-map <C-i> :Ag<CR>
+map <Leader>i :Ag<CR>
 nmap <Leader>w :Buffer<CR>
+
+" TODO
+" Install vundle (To install all those plugins)
+" Install fzf
+" Install the_silver_surfer (For ag in fzf)
+" Install rubocop
+" 
