@@ -52,6 +52,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'vim-ruby/vim-ruby'
 " Javascript
 Plugin 'maksimr/vim-jsbeautify'
+" React
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()
 
@@ -128,10 +130,9 @@ au BufNewFile,BufRead Gemfile set ft=ruby
 au BufNewFile,BufRead Gemfile.lock set ft=ruby
 au BufNewFile,BufRead *.ejs set ft=html
 
-" Snippet stuff
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Use react js hl also for non jsx extensions
+let g:jsx_ext_required = 0
 
 " No show command
 autocmd VimEnter * set nosc
