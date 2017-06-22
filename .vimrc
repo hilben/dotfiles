@@ -10,9 +10,6 @@ Plugin 'gmarik/vundle'
 " Some vim default settings
 Plugin 'tpope/vim-sensible' 
 
-" Some default settings
-"Plugin 'shougo/vimproc' " check if needed
-
 " Git plugin
 Plugin 'tpope/vim-fugitive'
 
@@ -20,7 +17,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 
 " Multi cursor§
-Plugin 'kristijanhusak/vim-multiple-cursors' " check if ever used
+Plugin 'kristijanhusak/vim-multiple-cursors'
 
 " Search in current file
 Plugin 'lokaltog/vim-easymotion'
@@ -32,24 +29,26 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'scrooloose/syntastic'
 
-" highlighting
-Plugin 'omer/vim-sparql'
+" displaying marks in side
+Plugin 'kshenoy/vim-signature'
+
+" syntax highlighting
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'slim-template/vim-slim'
-Plugin 'kshenoy/vim-signature'
 
 " Color Schemes
-Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
 
-" Tagbar (not working)
-Plugin 'majutsushi/tagbar'
+" Color highlighting
+Plugin 'chrisbra/Colorizer'
 
 " Languages
 " Ruby
 Plugin 'vim-ruby/vim-ruby'
+
 " Javascript
 Plugin 'maksimr/vim-jsbeautify'
 " React
@@ -57,25 +56,18 @@ Plugin 'mxw/vim-jsx'
 
 call vundle#end()
 
-color jellybeans
-
-filetype plugin indent on
 
 let mapleader="\<Space>"
 
 filetype plugin indent on
 filetype plugin on " enable plugins
-hi CursorColumn ctermbg=4
 set autoindent " code autoindent
 set autowrite " Automatically :write before running commands
 set backspace=indent,eol,start
 set backup " backup files
 set backupdir=/tmp,. " backup files
 set clipboard=unnamed " advanced clipboard"
-set colorcolumn=+1
 set completeopt=menu,preview " autocomplete function
-set cursorcolumn " show colum cursor
-set cursorline " highlight current line
 set directory=/tmp,. " swap files
 set expandtab " don't use real tabs
 set foldenable " enable folding
@@ -104,7 +96,6 @@ set showmatch " show matching elements
 set smartcase " if there are caps, go case-sensitive
 set smartindent " advanced indent
 set softtabstop=2 " tabs
-set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]%{fugitive#statusline()}
 set t_Co=256 " set 256 for terminal colors
 set tabstop=2 " tab with
 set textwidth=80
@@ -192,10 +183,26 @@ set rtp+=/usr/local/opt/fzf
 " Quit with :Q
 command -nargs=0 Quit :qa!
 
+" Colors and highlighting
+"set colorcolumn=100
+"set cursorcolumn " show colum cursor
+"set cursorline " highlight current line
 " Multi line
 " Default highlighting (see help :highlight and help :highlight-link)
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
+color gruvbox
+set background=dark    " Setting dark mode
+
+" status line
+set statusline = ""
+set statusline +=%3*%y%*                "file type
+set statusline +=%2*%m%*                "modified flag
+set statusline +=%4*\ %<%F%*            "full path
+set statusline +=%1*%=%5l%*             "current line
+set statusline +=%2*/%L%*               "total lines
+set statusline +=%1*%4v\ %*             "virtual column number
+set statusline +=%{fugitive#statusline()}
 
 map <C-p> :FZF<CR>
 map <Leader>i :Ag<CR>
