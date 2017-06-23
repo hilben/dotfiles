@@ -16,7 +16,7 @@ Plugin 'tpope/vim-fugitive'
 " Gui
 Plugin 'scrooloose/nerdtree'
 
-" Multi cursor§
+" Multi cursor
 Plugin 'kristijanhusak/vim-multiple-cursors'
 
 " Search in current file
@@ -56,8 +56,6 @@ Plugin 'mxw/vim-jsx'
 
 call vundle#end()
 
-
-let mapleader="\<Space>"
 
 filetype plugin indent on
 filetype plugin on " enable plugins
@@ -132,6 +130,9 @@ autocmd VimEnter * set nosc
 imap jj <ESC>
 imap hh <ESC>
 
+" Define leader
+let mapleader="\<Space>"
+
 " format the entire file
 nmap <leader>fef ggVG=
 
@@ -184,13 +185,7 @@ set rtp+=/usr/local/opt/fzf
 command -nargs=0 Quit :qa!
 
 " Colors and highlighting
-"set colorcolumn=100
-"set cursorcolumn " show colum cursor
-"set cursorline " highlight current line
-" Multi line
-" Default highlighting (see help :highlight and help :highlight-link)
-highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
-highlight link multiple_cursors_visual Visual
+set cursorline " highlight current line
 color gruvbox
 set background=dark    " Setting dark mode
 
@@ -208,9 +203,9 @@ map <C-p> :FZF<CR>
 map <Leader>i :Ag<CR>
 nmap <Leader>w :Buffer<CR>
 
-" TODO
+" TODO to get it running
 " Install vundle (To install all those plugins)
 " Install fzf
-" Install the_silver_surfer (For ag in fzf)
+" Install the_silver_surfer (For AG in FZF)
 " Install rubocop
-" 
+" Install JsBeautify
