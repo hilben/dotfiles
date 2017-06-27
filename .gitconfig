@@ -1,0 +1,39 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+name = Benjamin Hiltpolt
+email = benjamin.hiltpolt@xing.com
+[core]
+	editor = /usr/bin/vim
+[rebase]
+    instructionFormat = %s [%an]
+[alias]
+  dd    = reset -p
+  com   = commit -m
+  co    = checkout
+  go    = checkout -b
+  b     = branch
+  del   = branch -d
+  st    = status -u
+  l     = log --stat --graph --branches
+  lg    = log --graph --branches --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  d     = diff -p -C -m
+  df    = diff --cached -p -C -m
+  last  = show HEAD
+  u     = add -u
+  p     = add -p
+  pa    = "! git add --intent-to-add . && git p"
+  top   = shortlog --email --summary --numbered
+  prune = "! git clean -df"
+  pp    = "! git pull && git push"
+  wipe  = fetch -p
+  eat   = stash save
+  digest = stash show -p
+  poop  = stash pop
+  fix = commit --amend --no-edit
+  amend = commit --amend
+  rb = rebase -i
+  # interactive rebasing 
+  pr = pull --rebase
+[rebase]
+	autosquash = true
