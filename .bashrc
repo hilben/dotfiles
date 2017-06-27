@@ -59,11 +59,13 @@ alias gd='git diff HEAD@{1}'
 alias gl='git log'
 alias gp='git pull' 
 alias gs='git status'
+alias got='git'
 
 alias gitconfig='cat ~/.gitconfig'
 alias xingnotes='cat ~/xing/notes.txt'
 alias start_sql='mysqld --gdb'
 
+alias rpsec='rspec'
 alias be='bundle exec'
 alias b='bundle'
 alias bes='bundle exec rspec'
