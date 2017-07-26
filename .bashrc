@@ -93,5 +93,6 @@ complete -C `which xing_autocompletion` -o default xing
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+
 ruby ~/github/printtext/print_texts.rb
 

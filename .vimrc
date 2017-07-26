@@ -158,6 +158,7 @@ nmap <Leader>s <Plug>(easymotion-s2)
 
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>ni :NERDTreeFind<CR>
 let NERDTreeHighlightCursorline=1
 
 " rubo cop
@@ -180,13 +181,10 @@ map <Leader>j :call JsBeautify()<CR>
 " let g:syntastic_always_populate_loc_list = 1
 "
 " ale
-let g:ale_lint_on_text_changed = "always"
-let g:ale_statusline_format = ['✗ %d ', '!%d ', '✓ ']
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_lint_delay = 1
-let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed = "never"
+let g:ale_lint_on_save=1
+let g:ale_lint_on_insert_leave = 0
+
 "ale status line
 set statusline+=%#warningmsg#
 set statusline+=\ %{ALEGetStatusLine()}
