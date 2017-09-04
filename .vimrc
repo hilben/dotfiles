@@ -27,11 +27,8 @@ Plugin 'junegunn/fzf.vim'
 
 " Code analysis
 Plugin 'ngmy/vim-rubocop'
-" Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'w0rp/ale'
-
-" displaying marks in side
-Plugin 'kshenoy/vim-signature'
 
 " syntax highlighting
 Plugin 'othree/html5.vim'
@@ -52,14 +49,15 @@ Plugin 'vim-ruby/vim-ruby'
 
 " Javascript
 Plugin 'maksimr/vim-jsbeautify'
+
 " React
 Plugin 'mxw/vim-jsx'
 
 call vundle#end()
 
-
 filetype plugin indent on
 filetype plugin on " enable plugins
+set notf " 
 set autoindent " code autoindent
 set autowrite " Automatically :write before running commands
 set backspace=indent,eol,start
@@ -101,7 +99,14 @@ set textwidth=80
 set undodir=/tmp,.
 set undofile
 set undolevels=10000
-set virtualedit=block " allow virtual editing in Visual block mode                                                                                                    
+set virtualedit=block " allow virtual editing in Visual block mode
+
+
+" performance
+set synmaxcol=120
+set ttyfast
+set nocursorline " no highlight current line
+
 set wildmenu " command-line completion
 set wrapscan " search loop
 
@@ -137,6 +142,9 @@ let mapleader="\<Space>"
 " format the entire file
 nmap <leader>fef ggVG=
 
+" always save when exiting insert mode
+autocmd InsertLeave * write
+
 " remove unneeded whitespaces
 nnoremap <Leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
@@ -159,6 +167,7 @@ nmap <Leader>s <Plug>(easymotion-s2)
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>ni :NERDTreeFind<CR>
+nmap <leader>nr :NERDTree<CR>
 let NERDTreeHighlightCursorline=1
 
 " rubo cop
@@ -179,16 +188,16 @@ map <Leader>j :call JsBeautify()<CR>
 " let g:syntastic_enable_elixir_checker = 1
 " let g:syntastic_elixir_checkers = ['elixir']
 " let g:syntastic_always_populate_loc_list = 1
-"
+
 " ale
-let g:ale_lint_on_text_changed = "never"
-let g:ale_lint_on_save=1
-let g:ale_lint_on_insert_leave = 0
+ let g:ale_lint_on_text_changed = "never"
+ let g:ale_lint_on_save=1
+ let g:ale_lint_on_insert_leave = 0
 
 "ale status line
-set statusline+=%#warningmsg#
-set statusline+=\ %{ALEGetStatusLine()}
-set statusline+=%*
+ set statusline+=%#warningmsg#
+ set statusline+=\ %{ALEGetStatusLine()}
+ set statusline+=%*
 
 " FZF
 set rtp+=/usr/local/opt/fzf
@@ -197,7 +206,6 @@ set rtp+=/usr/local/opt/fzf
 command -nargs=0 Quit :qa!
 
 " Colors and highlighting
-set cursorline " highlight current line
 color gruvbox
 set background=dark    " Setting dark mode
 

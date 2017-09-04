@@ -1,5 +1,5 @@
 #!/bin/bash
-echo 'loading bens bashrc v1.15'
+echo 'loading bens bashrc v1.16'
 
 export PATH=/opt/local/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
@@ -37,7 +37,13 @@ alias sandbox_services="xing s r -s ds_autocompletion yoda ds_entity-matching &&
   xing s r -s ds_autocompletion yoda ds_entity-matching --host test && xing s r
 -s ds_autocompletion yoda ds_entity-matching --host edge"
 
-alias rpsec="rspec"
+alias rpsec="nocorrect rspec"
+alias rspec="nocorrect rspec"
+alias spec="nocorrect rspec"
+alias srpec="nocorrect rspec"
+alias srpec="nocorrect rspec"
+
+source ~/.autocorrect.sh
 
 source ~/.bashrc_secure
 
@@ -57,24 +63,30 @@ alias gb='git branch'
 alias gc='git commit'
 alias gd='git diff HEAD@{1}'
 alias gl='git log'
-alias gp='git pull' 
+alias gp='git pull'
 alias gs='git status'
 alias got='git'
+alias gut='git'
+alias glist='git for-each-ref --count=5 --sort=-committerdate refs/heads/ --format="%(refname:short)"'
+alias gbb='git for-each-ref --sort=-committerdate refs/heads/' # most recent branches
 
 alias gitconfig='cat ~/.gitconfig'
 alias xingnotes='cat ~/xing/notes.txt'
 alias start_sql='mysqld --gdb'
 
+
+alias rials='rails'
 alias rpsec='rspec'
 alias be='bundle exec'
 alias b='bundle'
-alias bes='bundle exec rspec'
-alias bes_no_feature="bundle exec spring rspec -c --exclude-pattern 'spec/features/**/*_spec.rb'"
+alias -g bes='bundle exec rspec'
+alias -g bes_no_feature="bundle exec spring rspec -c --exclude-pattern 'spec/features/**/*_spec.rb'"
 
 alias bem='be rake db:migrate'
 alias ber='be rake db:reset'
 
 alias wipe='echo '\''flush_all'\'' | nc localhost 11211'
+alias mysql='mysqld --gdb'
 
 alias reload_bash="source ~/.bashrc"
 
@@ -89,7 +101,7 @@ function prepare_cl() {
     fi
 }
 
-complete -C `which xing_autocompletion` -o default xing
+# complete -C `which xing_autocompletion` -o default xing
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 

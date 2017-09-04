@@ -5,6 +5,7 @@ name = Benjamin Hiltpolt
 email = benjamin.hiltpolt@xing.com
 [core]
 	editor = /usr/bin/vim
+	trustctime = false
 [rebase]
     instructionFormat = %s [%an]
 [alias]
@@ -25,7 +26,7 @@ email = benjamin.hiltpolt@xing.com
   hcekcout = checkout
   chekcout = checkout 
   checout = checkout
-  ckecout = checkout
+  chkecout = checkout
   stauts= status
   l     = log --stat --graph --branches
   lg    = log --graph --branches --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
@@ -34,6 +35,7 @@ email = benjamin.hiltpolt@xing.com
   last  = show HEAD
   u     = add -u
   p     = add -p
+  ad    = add
   pa    = "! git add --intent-to-add . && git p"
   top   = shortlog --email --summary --numbered
   prune = "! git clean -df"
