@@ -1,5 +1,5 @@
 #!/bin/bash
-echo 'loading bens bashrc v1.16'
+echo 'loading bens bashrc v1.17'
 
 export PATH=/opt/local/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
