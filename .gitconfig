@@ -1,8 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-name = Benjamin Hiltpolt
-email = benjamin.hiltpolt@xing.com
+	name = Benjamin Hiltpolt
+	email = benjamin.hiltpolt@xing.com
 [core]
 	editor = /usr/bin/vim
 	trustctime = false

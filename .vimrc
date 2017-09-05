@@ -9,9 +9,11 @@ Plugin 'gmarik/vundle'
 
 " Some vim default settings
 Plugin 'tpope/vim-sensible' 
+Plugin 'tpope/vim-surround'
 
 " Git plugin
 Plugin 'tpope/vim-fugitive'
+
 
 " Gui
 Plugin 'scrooloose/nerdtree'
@@ -46,6 +48,7 @@ Plugin 'chrisbra/Colorizer'
 " Languages
 " Ruby
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
 
 " Javascript
 Plugin 'maksimr/vim-jsbeautify'
@@ -100,13 +103,13 @@ set undodir=/tmp,.
 set undofile
 set undolevels=10000
 set virtualedit=block " allow virtual editing in Visual block mode
+setl spell "Spell check
 
 
 " performance
 set synmaxcol=120
 set ttyfast
 set nocursorline " no highlight current line
-
 set wildmenu " command-line completion
 set wrapscan " search loop
 
@@ -125,12 +128,14 @@ au BufNewFile,BufRead Gemfile set ft=ruby
 au BufNewFile,BufRead Gemfile.lock set ft=ruby
 au BufNewFile,BufRead *.ejs set ft=html
 
-
 " Use react js hl also for non jsx extensions
 let g:jsx_ext_required = 0
 
 " No show command
 autocmd VimEnter * set nosc
+
+" tabs
+nnoremap <C-W>t :tabnew<cr>
 
 " Quick ESC
 imap jj <ESC>
@@ -145,9 +150,6 @@ nmap <leader>fef ggVG=
 " always save when exiting insert mode
 autocmd InsertLeave * write
 
-" remove unneeded whitespaces
-nnoremap <Leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-
 " search and replace selected text
 vnoremap <C-h> "hy:%s/<C-r>h//gc<left><left><left>
 
@@ -161,8 +163,16 @@ noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
-" Gif config
+
+" new tab
+nnoremap <C-W>t :tabnew<cr>
+
+" Easymotion config
 nmap <Leader>s <Plug>(easymotion-s2)
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Search
+nmap <Leader><Leader> :nohl<CR>
 
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
@@ -177,17 +187,6 @@ nmap <Leader>ra :RuboCop -a<CR>
 
 " js beautify
 map <Leader>j :call JsBeautify()<CR>
-
-" Syntastic
-" let g:syntastic_auto_jump = 0
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 1
-" let g:syntastic_auto_loc_list = 2
-" let g:syntastic_filetype_map = { 'javascript.doxygen': 'javascript' }
-" let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-" let g:syntastic_enable_elixir_checker = 1
-" let g:syntastic_elixir_checkers = ['elixir']
-" let g:syntastic_always_populate_loc_list = 1
 
 " ale
  let g:ale_lint_on_text_changed = "never"

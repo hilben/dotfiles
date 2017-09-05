@@ -1,5 +1,5 @@
 #!/bin/bash
-echo 'loading bens bashrc v1.17'
+echo 'loading bens bashrc v1.19'
 
 export PATH=/opt/local/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
@@ -8,7 +8,7 @@ export PATH="$HOME/.rbenv/shims:$PATH"
 
 eval "$(rbenv init -)"
 alias r="source ~/.bashrc"
-alias edit_bash="vim ~/.bashrc"
+alias eb="vim ~/.bashrc"
 alias edit_bash_secure="vim ~/.bashrc_secure"
 alias x="cd ~/xing/"
 alias p="cd ~/xing/profile"
@@ -28,6 +28,10 @@ alias h="cd ~/xing/hermes"
 alias e="~/exercism/elixir"
 alias cc="dscacheutil -flushcache"
 alias featurer_on="xing x exec \"echo 'Featurer.add(:xtp_user, /.*/)' | bundle exec rails c\""
+alias gitconfbu="mv .gitignore{,.orig}"
+alias gpp="git push -u origin $(current_branch)"
+alias gup="mv .gitignore_bu .gitignore"
+alias gap="mv .gitignore .gitignore_bu"
 
 alias prepare_deploy="bundle exec rake changelog:update"
 alias sandbox_reset="xing e r dev-benjamin-hiltpolt"
@@ -68,6 +72,8 @@ alias got='git'
 alias gut='git'
 alias glist='git for-each-ref --count=5 --sort=-committerdate refs/heads/ --format="%(refname:short)"'
 alias gbb='git for-each-ref --sort=-committerdate refs/heads/' # most recent branches
+alias gsync="git rebase origin/master"
+alias grb="git rebase -i origin/master"
 
 alias gitconfig='cat ~/.gitconfig'
 alias xingnotes='cat ~/xing/notes.txt'
