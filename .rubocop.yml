@@ -9,6 +9,10 @@ AllCops:
     - 'spec/fixtures/**/*'
     - '**/.**'
 
+RSpec/FilePath:
+  Exclude:
+    - 'spec/features/**/*'
+
 Documentation:
   Enabled: false
 

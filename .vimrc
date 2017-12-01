@@ -56,6 +56,10 @@ Plugin 'maksimr/vim-jsbeautify'
 " React
 Plugin 'mxw/vim-jsx'
 
+" Go
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'fatih/vim-go'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -86,7 +90,7 @@ set nowritebackup
 set nrformats= " when using c-a and c-x do not assume 007 as octal
 set number " line numbers
 set numberwidth=1
-set omnifunc=on " autocomplete function
+set omnifunc=syntaxcomplete#Complete
 set ruler         " show the cursor position all the time
 set scrolloff=3 " lines before EOF
 set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
@@ -198,6 +202,9 @@ map <Leader>j :call JsBeautify()<CR>
  set statusline+=\ %{ALEGetStatusLine()}
  set statusline+=%*
 
+"go
+nmap <Leader>g :GoRun<CR>
+
 " FZF
 set rtp+=/usr/local/opt/fzf
 
@@ -221,6 +228,11 @@ set statusline +=%{fugitive#statusline()}
 map <C-p> :FZF<CR>
 map <Leader>i :Ag<CR>
 nmap <Leader>w :Buffer<CR>
+
+
+" Omnicomplete highlight
+inoremap <C-N> <C-x><C-o>
+inoremap <C-@> <C-Space>
 
 " TODO to get it running
 " Install vundle (To install all those plugins)
