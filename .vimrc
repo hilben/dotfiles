@@ -29,6 +29,7 @@ Plugin 'junegunn/fzf.vim'
 
 " Code analysis
 Plugin 'ngmy/vim-rubocop'
+
 "Plugin 'scrooloose/syntastic'
 Plugin 'w0rp/ale'
 
@@ -64,7 +65,6 @@ call vundle#end()
 
 filetype plugin indent on
 filetype plugin on " enable plugins
-set notf " 
 set autoindent " code autoindent
 set autowrite " Automatically :write before running commands
 set backspace=indent,eol,start
@@ -204,6 +204,10 @@ map <Leader>j :call JsBeautify()<CR>
 
 "go
 nmap <Leader>g :GoRun<CR>
+nmap <Leader>a :GoAlternate<CR>
+nmap <Leader>t :GoTest<CR>
+nmap <Leader>b :GoBuild<CR>
+let g:go_fmt_command = "goimports"
 
 " FZF
 set rtp+=/usr/local/opt/fzf
@@ -229,10 +233,8 @@ map <C-p> :FZF<CR>
 map <Leader>i :Ag<CR>
 nmap <Leader>w :Buffer<CR>
 
-
 " Omnicomplete highlight
-inoremap <C-N> <C-x><C-o>
-inoremap <C-@> <C-Space>
+inoremap <C-k> <C-x><C-o>
 
 " TODO to get it running
 " Install vundle (To install all those plugins)
@@ -240,3 +242,4 @@ inoremap <C-@> <C-Space>
 " Install the_silver_surfer (For AG in FZF)
 " Install rubocop
 " Install JsBeautify
+" Go: Run GoInstallBinaries

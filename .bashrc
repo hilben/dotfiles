@@ -12,6 +12,7 @@ alias eb="vim ~/.bashrc"
 alias edit_bash_secure="vim ~/.bashrc_secure"
 alias cb="cat ~/.bashrc"
 alias x="cd ~/xing/"
+alias a="cd ~/go/src/source.xing.com/e-recruiting-api-team/api"
 alias p="cd ~/xing/profile"
 alias kpi="cd ~/xing/be_kpi"
 alias x_notes="cat ~/xing/notes.txt"
@@ -35,7 +36,6 @@ alias gpp="git push --set-upstream origin $(current_branch)"
 alias gup="mv .gitignore_bu .gitignore"
 alias gap="mv .gitignore .gitignore_bu"
 alias cop="cp ~/.rubocop* ."
-
 
 alias prepare_deploy="bundle exec rake changelog:update"
 alias sandbox_reset="xing e r dev-benjamin-hiltpolt"
@@ -84,7 +84,6 @@ alias gitconfig='cat ~/.gitconfig'
 alias xingnotes='cat ~/xing/notes.txt'
 alias start_sql='mysqld --gdb'
 
-
 alias rials='rails'
 alias rpsec='rspec'
 alias be='bundle exec'
@@ -97,6 +96,7 @@ alias bem='be rake db:migrate'
 alias ber='be rake db:reset'
 
 alias wipe='echo '\''flush_all'\'' | nc localhost 11211'
+alias wipe_sandbox="xing x e --app memcached \"'echo '\''flush_all'\'' | nc localhost 11211'\""
 alias mysql='mysqld --gdb'
 
 alias reload_bash="source ~/.bashrc"
@@ -114,5 +114,7 @@ function prepare_cl() {
 
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export GOPATH="$HOME/go"
+export PATH=$PATH:$GOPATH/bin
 
 ruby ~/github/printtext/print_texts.rb

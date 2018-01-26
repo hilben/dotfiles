@@ -4,8 +4,8 @@
 	name = Benjamin Hiltpolt
 	email = benjamin.hiltpolt@xing.com
 [core]
-	editor = /usr/bin/vim
-	trustctime = false
+  editor = /usr/local/bin/nvim
+  trustctime = false
 [rebase]
     instructionFormat = %s [%an]
 [alias]
@@ -27,6 +27,12 @@
   chekcout = checkout 
   checout = checkout
   chkecout = checkout
+  rebas = rebase
+  rbase = rebase
+  base = rebase
+  sash = stash
+  stahs = stash
+  tash = stash
   stauts= status
   l     = log --stat --graph --branches
   lg    = log --graph --branches --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
