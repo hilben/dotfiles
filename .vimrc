@@ -108,6 +108,7 @@ set undofile
 set undolevels=10000
 set virtualedit=block " allow virtual editing in Visual block mode
 setl spell "Spell check
+set completeopt=menu " So go autocompletion is not spawning a new buffer
 
 
 " performance
