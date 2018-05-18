@@ -55,6 +55,7 @@
   rb = rebase -i
   # interactive rebasing 
   pr = pull --rebase
+  bclean = "!f() { git branch --merged ${1-master} | grep -vE '(master|production)' | xargs git branch -d; }; f"
 [rebase]
 	autosquash = true
 [filter "lfs"]

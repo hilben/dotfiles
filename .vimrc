@@ -1,5 +1,8 @@
 filetype off
 
+" Reload vimrc after save.
+autocmd! bufwritepost .vimrc source %
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -9,11 +12,9 @@ Plugin 'gmarik/vundle'
 
 " Some vim default settings
 Plugin 'tpope/vim-sensible' 
-Plugin 'tpope/vim-surround'
 
 " Git plugin
 Plugin 'tpope/vim-fugitive'
-
 
 " Gui
 Plugin 'scrooloose/nerdtree'
@@ -30,8 +31,8 @@ Plugin 'junegunn/fzf.vim'
 " Code analysis
 Plugin 'ngmy/vim-rubocop'
 
-"Plugin 'scrooloose/syntastic'
-Plugin 'w0rp/ale'
+" used to trigger rubocop automatically
+" Plugin 'w0rp/ale'
 
 " syntax highlighting
 Plugin 'othree/html5.vim'
@@ -44,7 +45,7 @@ Plugin 'slim-template/vim-slim'
 Plugin 'morhetz/gruvbox'
 
 " Color highlighting
-Plugin 'chrisbra/Colorizer'
+"Plugin 'chrisbra/Colorizer'
 
 " Languages
 " Ruby
@@ -58,7 +59,7 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mxw/vim-jsx'
 
 " Go
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'nsf/gocode', {'rtp': 'vim/'} " autocomplete
 Plugin 'fatih/vim-go'
 
 call vundle#end()
@@ -90,7 +91,7 @@ set nowritebackup
 set nrformats= " when using c-a and c-x do not assume 007 as octal
 set number " line numbers
 set numberwidth=1
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 set ruler         " show the cursor position all the time
 set scrolloff=3 " lines before EOF
 set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
@@ -110,7 +111,6 @@ set virtualedit=block " allow virtual editing in Visual block mode
 setl spell "Spell check
 set completeopt=menu " So go autocompletion is not spawning a new buffer
 
-
 " performance
 set synmaxcol=120
 set ttyfast
@@ -118,9 +118,10 @@ set nocursorline " no highlight current line
 set wildmenu " command-line completion
 set wrapscan " search loop
 
+
 " Automatic formatting
 autocmd BufWritePre *.rb :%s/\s\+$//e
-autocmd BufWritePre *.go :%s/\s\+$//e
+"autocmd BufWritePre *.go :%s/\s\+$//e
 autocmd BufWritePre *.haml :%s/\s\+$//e
 autocmd BufWritePre *.html :%s/\s\+$//e
 autocmd BufWritePre *.scss :%s/\s\+$//e
@@ -141,10 +142,6 @@ autocmd VimEnter * set nosc
 
 " tabs
 nnoremap <C-W>t :tabnew<cr>
-
-" Quick ESC
-imap jj <ESC>
-imap hh <ESC>
 
 " Define leader
 let mapleader="\<Space>"
@@ -194,9 +191,9 @@ nmap <Leader>ra :RuboCop -a<CR>
 map <Leader>j :call JsBeautify()<CR>
 
 " ale
- let g:ale_lint_on_text_changed = "never"
- let g:ale_lint_on_save=1
- let g:ale_lint_on_insert_leave = 0
+" let g:ale_lint_on_text_changed = "never"
+" let g:ale_lint_on_save=1
+" let g:ale_lint_on_insert_leave = 0
 
 "ale status line
  set statusline+=%#warningmsg#
@@ -205,16 +202,20 @@ map <Leader>j :call JsBeautify()<CR>
 
 "go
 nmap <Leader>g :GoRun<CR>
-nmap <Leader>a :GoAlternate<CR>
-nmap <Leader>t :GoTest<CR>
-nmap <Leader>b :GoBuild<CR>
+nmap <Leader>gr :GoRename<CR>
+nmap <Leader>gb :GoBuild<CR>
+nmap <Leader>ga :GoAlternate<CR>
+nmap <Leader>gt :GoTest<CR>
+nmap <Leader>gi :GoImports<CR>
 let g:go_fmt_command = "goimports"
+"let g:go_fmt_autosave = 0
+"let g:go_metalinter_autosave = 0
 
 " FZF
 set rtp+=/usr/local/opt/fzf
 
 " Quit with :Q
-command -nargs=0 Quit :qa!
+command! -nargs=0 Quit :qa!
 
 " Colors and highlighting
 color gruvbox
