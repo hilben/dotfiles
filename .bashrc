@@ -29,6 +29,7 @@ alias featurer_on="xing x exec \"echo 'Featurer.add(:xtp_user, /.*/)' | bundle e
 alias create_consumer="xing x exec \"echo 'VendorConsumer.create(consumer_key: %(xtm_vendor_development))' | bundle exec rails c\""
 alias clear_cache_xingbox="xing x exec \"echo 'Rails.cache.clear' | bundle exec rails c\""
 alias gitconfbu="mv .gitignore{,.orig}"
+alias gitconfbu_re="mv .gitignore{.orig,}"
 alias gpp="git push --set-upstream origin $(current_branch)"
 alias gup="mv .gitignore_bu .gitignore"
 alias gap="mv .gitignore .gitignore_bu"
