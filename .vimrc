@@ -62,6 +62,12 @@ Plugin 'mxw/vim-jsx'
 Plugin 'nsf/gocode', {'rtp': 'vim/'} " autocomplete
 Plugin 'fatih/vim-go'
 
+" Elm
+Plugin 'elmcast/elm-vim'
+
+" Crystal
+Plugin 'rhysd/vim-crystal'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -210,6 +216,13 @@ nmap <Leader>gi :GoImports<CR>
 let g:go_fmt_command = "goimports"
 "let g:go_fmt_autosave = 0
 "let g:go_metalinter_autosave = 0
+
+
+" Copy paste file name
+"nmap ,cs :let @*=expand("%")<CR>
+"
+"" Copy paste file name + fullpath
+"nmap ,cl :let @*=expand("%:p")<CR>
 
 " FZF
 set rtp+=/usr/local/opt/fzf
