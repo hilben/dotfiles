@@ -5,6 +5,8 @@ export PATH=/opt/local/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
+export PATH="$HOME/xing/olympus-tools/bin:$PATH"
+
 
 eval "$(rbenv init -)"
 alias da="direnv allow"

@@ -214,15 +214,11 @@ nmap <Leader>ga :GoAlternate<CR>
 nmap <Leader>gt :GoTest<CR>
 nmap <Leader>gi :GoImports<CR>
 let g:go_fmt_command = "goimports"
-"let g:go_fmt_autosave = 0
-"let g:go_metalinter_autosave = 0
-
 
 " Copy paste file name
-"nmap ,cs :let @*=expand("%")<CR>
-"
+nmap <Leader>fn :let @*=expand("%")<CR>
 "" Copy paste file name + fullpath
-"nmap ,cl :let @*=expand("%:p")<CR>
+nmap <Leader>fp :let @*=expand("%:p")<CR>
 
 " FZF
 set rtp+=/usr/local/opt/fzf
