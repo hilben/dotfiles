@@ -59,7 +59,7 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mxw/vim-jsx'
 
 " Go
-Plugin 'nsf/gocode', {'rtp': 'vim/'} " autocomplete
+Plugin 'mdempsky/gocode', {'rtp': 'vim/'} " autocomplete
 Plugin 'fatih/vim-go'
 
 " Elm
@@ -116,6 +116,8 @@ set undolevels=10000
 set virtualedit=block " allow virtual editing in Visual block mode
 setl spell "Spell check
 set completeopt=menu " So go autocompletion is not spawning a new buffer
+set formatoptions-=tc " Do not auto new line
+
 
 " performance
 set synmaxcol=120
@@ -200,6 +202,14 @@ map <Leader>j :call JsBeautify()<CR>
 " let g:ale_lint_on_text_changed = "never"
 " let g:ale_lint_on_save=1
 " let g:ale_lint_on_insert_leave = 0
+"
+function! CopyMatches(reg)
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
+  let reg = empty(a:reg) ? '+' : a:reg
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)
 
 "ale status line
  set statusline+=%#warningmsg#
@@ -214,6 +224,7 @@ nmap <Leader>ga :GoAlternate<CR>
 nmap <Leader>gt :GoTest<CR>
 nmap <Leader>gi :GoImports<CR>
 let g:go_fmt_command = "goimports"
+let g:go_gocode_propose_source=0
 
 " Copy paste file name
 nmap <Leader>fn :let @*=expand("%")<CR>
@@ -246,6 +257,7 @@ nmap <Leader>w :Buffer<CR>
 
 " Omnicomplete highlight
 inoremap <C-k> <C-x><C-o>
+setlocal omnifunc=go
 
 " TODO to get it running
 " Install vundle (To install all those plugins)
