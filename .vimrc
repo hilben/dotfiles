@@ -211,6 +211,9 @@ function! CopyMatches(reg)
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 
+
+imap jj <Esc>
+
 "ale status line
  set statusline+=%#warningmsg#
  set statusline+=\ %{ALEGetStatusLine()}

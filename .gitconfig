@@ -4,7 +4,7 @@
 	name = Benjamin Hiltpolt
 	email = benjamin.hiltpolt@xing.com
 [core]
-  editor = /usr/local/bin/nvim
+  editor = /usr/local/bin/vim
   trustctime = false
 [rebase]
     instructionFormat = %s [%an]

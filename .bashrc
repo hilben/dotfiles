@@ -1,35 +1,23 @@
 #!/bin/bash
-echo 'loading bens bashrc v2.2'
-alias  kb='xingboxctl kc dev-benjamin-hiltpolt'
+echo 'loading bens bashrc v2.3'
 
 export PATH=/opt/local/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
-export PATH="$HOME/xing/olympus-tools/bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 
-alias r="source ~/.bashrc"
+alias r="source ~/.zshrc"
 alias eb="vim ~/.bashrc"
 alias edit_bash_secure="vim ~/.bashrc_secure"
-alias x="cd ~/xing/"
-alias a="cd ~/go/src/source.xing.com/e-recruiting-api-team/api"
-alias int="~/xing/api-integration-tests"
-alias c="cd ~/xing/cra"
-alias c2="cd ~/xing/cra2"
 alias gh="cd ~/github"
-alias db="cd ~/xing/redboard"
 alias clear_cache="echo 'Rails.cache.clear' | bundle exec rails c"
-alias clear_cache_xingbox="xing x exec \"echo 'Rails.cache.clear' | bundle exec rails c\""
-alias cop="cp ~/.rubocop* ."
-alias -g scramble="/Users/benjamin.hiltpolt/github/scrambler/scramble"
-alias kb="xingboxctl kc dev-benjamin-hiltpolt"
 
 alias rpsec="nocorrect rspec"
 alias rspec="nocorrect rspec"
 alias spec="nocorrect rspec"
 alias srpec="nocorrect rspec"
 alias srpec="nocorrect rspec"
-alias gt="go test ./..."
 
 alias docker_clean="docker rmi \$(docker images -f 'dangling=true' -q)"
 alias docker_clean2="docker rm -f \$(docker ps -aq)"
@@ -41,12 +29,7 @@ alias raisl="rails"
 
 source ~/.bashrc_secure
 
-# Foreman 
-alias bef='bundle exec foreman start'
-
 alias fixpry='stty echo' # fix broken console
-
-alias installpg_gem="gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/9.3/bin/pg_config"
 
 alias g='git'
 alias gd='git diff HEAD@{1}'
@@ -71,10 +54,12 @@ alias -g bes='bundle exec rspec'
 alias -g bes_no_feature="bundle exec spring rspec -c --exclude-pattern 'spec/features/**/*_spec.rb'"
 
 alias wipe='echo '\''flush_all'\'' | nc localhost 11211'
-alias wipe_sandbox="xing x e --app memcached \"'echo '\''flush_all'\'' | nc localhost 11211'\""
 alias mysql='mysqld --gdb'
-alias forward_rabbit_mq_kingbox="xingboxctl port-forward add dev-benjamin-hiltpolt rabbitmq 5672:5672"
 alias port_scan="sudo lsof -i -P -n | grep LISTEN"
+
+alias loc_js='wc -l $(git ls-files | grep ".*\.js")'
+alias loc_rb='wc -l $(git ls-files | grep ".*\.rb")'
+alias loc_java='wc -l $(git ls-files | grep ".*\.java")'
 
 
 alias reload_bash="source ~/.bashrc"
@@ -91,3 +76,6 @@ eval "$(rbenv init -)"
 eval $(thefuck --alias)
 
 ruby ~/github/printtext/print_texts.rb
+
+defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
