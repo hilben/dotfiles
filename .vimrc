@@ -9,7 +9,6 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
 call plug#begin('~/.vim/plugged')
 " Let Vundle manage Vundle
 Plug 'gmarik/vundle'
@@ -31,6 +30,7 @@ Plug 'lokaltog/vim-easymotion'
 
 " Search everywhere
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Code analysis
 Plug 'ngmy/vim-rubocop'
@@ -196,11 +196,6 @@ nmap <Leader>ra :RuboCop -a<CR>
 " js beautify
 map <Leader>j :call JsBeautify()<CR>
 
-" ale
-" let g:ale_lint_on_text_changed = "never"
-" let g:ale_lint_on_save=1
-" let g:ale_lint_on_insert_leave = 0
-"
 function! CopyMatches(reg)
   let hits = []
   %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
@@ -208,7 +203,6 @@ function! CopyMatches(reg)
   execute 'let @'.reg.' = join(hits, "\n") . "\n"'
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
-
 
 imap jj <Esc>
 
@@ -259,6 +253,7 @@ nmap <Leader>w :Buffer<CR>
 " Omnicomplete highlight
 inoremap <C-k> <C-x><C-o>
 setlocal omnifunc=go
+
 
 " TODO to get it running
 " Install https://github.com/junegunn/vim-plug
