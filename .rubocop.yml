@@ -1,7 +1,5 @@
-inherit_from: .rubocop_rails.yml
-
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.7
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
@@ -9,17 +7,10 @@ AllCops:
     - 'spec/fixtures/**/*'
     - '**/.**'
 
-RSpec/FilePath:
-  Exclude:
-    - 'spec/features/**/*'
-
 Documentation:
   Enabled: false
 
-Rails:
-  Enabled: true
-
-Metrics/LineLength:
+LineLength:
   Max: 100
 
 Style/SignalException:
