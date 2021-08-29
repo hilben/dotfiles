@@ -50,8 +50,6 @@ alias rials='rails'
 alias rpsec='rspec'
 alias be='bundle exec'
 alias b='bundle' 
-alias -g bes='bundle exec rspec'
-alias -g bes_no_feature="bundle exec spring rspec -c --exclude-pattern 'spec/features/**/*_spec.rb'"
 
 alias wipe='echo '\''flush_all'\'' | nc localhost 11211'
 alias mysql='mysqld --gdb'
@@ -74,8 +72,6 @@ export PATH=$PATH:/Users/benjamin.hiltpolt/.oly/bin
 export GO111MODULE=on
 eval "$(rbenv init -)"
 eval $(thefuck --alias)
-
-ruby ~/github/printtext/print_texts.rb
 
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)

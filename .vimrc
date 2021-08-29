@@ -191,7 +191,7 @@ let NERDTreeHighlightCursorline=1
 " rubo cop
 let g:vimrubocop_config = '.rubocop.yml'
 nmap <Leader>r :RuboCop<CR>
-nmap <Leader>ra :RuboCop -a<CR>
+nmap <Leader>ra :RuboCop -A<CR>
 
 " js beautify
 map <Leader>j :call JsBeautify()<CR>
